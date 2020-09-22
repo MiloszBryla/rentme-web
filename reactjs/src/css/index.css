@@ -1,0 +1,157 @@
+.landing-page-header {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.area-of-logo-with-options {
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 60vw;
+}
+
+#show-what-u-got{
+    text-align: center;
+}
+
+.input-image{
+    align-self: center;
+}
+
+#logo-with-slogan{
+    width:40vw;
+    max-width: 15cm;
+}
+
+#options{
+    margin-top: 8vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding-right: 50px;
+    padding-left: 40px;
+}
+
+#search-field{
+    float:left;
+    padding: 0.5em 1.5vw;
+    border-radius:15px;
+    border:none;
+    font-family: inherit;
+    font-size: 1.5vw;
+    width: 25vw;
+    margin-right: 5vw;
+}
+
+#search-field:focus::placeholder{
+    color: transparent;
+}
+
+.area-of-logo-with-options p{
+    display:inline;
+    font-size: 28px;
+    margin:auto;
+}
+
+#list-item-button{
+    padding: 0.5em 1.5vw;
+    border-radius: 15px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: white;
+    font-family: "Roboto";
+    font-size: 1.5vw;
+    height: 3.5vw;
+    width: 13vw;
+    margin-left: 5vw;
+    color:white;
+    background: none;
+    cursor: pointer;
+    transition-duration: 0.5s;
+}
+
+#list-item-button:hover{
+    background-color: rgba(255,255,255,0.6);
+    border-color: rgba(255,255,255,0.6);
+    transition-duration: 0.5s;
+}
+
+.landing-page-header p{
+    display: inline;
+    color: white;
+    font-size: 2vw;
+}
+
+
+#see-categories-sign{
+    position: absolute;
+    bottom: 3%;
+    left: 45%;
+    text-align: center;
+    transition-duration: 0.5s;
+}
+#see-categories-sign:hover{
+    opacity: 0.7;
+    transition-duration: 0.5s;
+}
+
+#see-categories {
+    color: white;
+    font-size: 1.5vw;
+}
+
+#scroll-down-arrows{
+    width: 1.5vw;
+}
+
+#categories-area{
+    position: absolute;
+    top: 100vh;
+    height: 100vh;
+}
+
+.categories{
+    padding: 40vh 10vh;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-gap: 20px;
+}
+
+.category{
+    border-radius: 15px;
+    display: grid;
+    grid-template-rows: 7fr 2fr;
+    margin: 0;
+    padding: 0;
+    max-height: 100%;
+    background: white;
+    color: black;
+    text-align: center;
+    overflow: hidden;
+}
+
+.category-image{
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.category-name{
+    max-height: 100%;
+    padding: 10px;
+}
+
+#error-page-redirect{
+    text-decoration: none;
+}
+
+
+
+
+
