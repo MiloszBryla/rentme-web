@@ -14,7 +14,7 @@ function Item(props) {
                 <div className="items-list-item-info-area">
                     <div className="items-list-item-info">
                         <p className="items-list-item-name">{props.item.name}</p>
-                        <p className="items-list-item-price">Price: {props.item.price} pln/day</p>
+                        <p className="items-list-item-price">Price:{props.item.price} pln/day</p>
                        <p className="items-list-item-location">Location: {props.item.owner.city}</p>
                     </div>
                 </div>

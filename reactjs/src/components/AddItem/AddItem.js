@@ -21,7 +21,7 @@ function AddItem() {
     const [owners, setOwners] = useState([]);
 
     const fetchOwners = async () => {
-        const response = await fetch('http://localhost:8080/users/renters/all');
+        const response = await fetch('http://localhost:8080/users/renters');
         const owners = await response.json();
         setOwners(owners);
     }
