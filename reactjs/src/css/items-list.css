@@ -1,10 +1,10 @@
-
 #items-area{
     width: calc(70vw - 60px);
     float:left;
     padding: 0 20px 20px 10px;
     margin-top: 110px;
 }
+
 .items-list-sorting-list{
     margin-top: 10px;
     width: 150px;
@@ -13,7 +13,7 @@
 .items-list{
     margin-top: 25px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
     grid-gap: 10px;
 }
 
@@ -21,11 +21,12 @@
     border-radius: 15px;
     /*border: 1px solid rgba(255, 255, 255);*/
     display: grid;
-    grid-template-rows: 3fr 2fr;
+    grid-template-rows: 3fr 2.6fr;
     margin: 0;
     padding: 0;
-    max-height: 280px;
-    max-width: 270px;
+    height: 100%;
+/*    max-height: 250px;*/
+/*    max-width: 230px;*/
     overflow: hidden;
     transform: scale(0);
     animation: popup 0.8s forwards;
@@ -34,13 +35,14 @@
 @keyframes popup{
     0%{transform: scale(0)}
     33%{transform: scale(1.05)}
-    66%{transform:scale(0.97)}
+    66%{transform:scale(0.98)}
     100%{transform: scale(1)}
 }
 
 .item-photo-container{
     background: rgba(255,255,255,1);
     height: 100%;
+    max-height: 150px;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -8,11 +8,22 @@ function AddItem() {
 
     useEffect(() => { fetchCategories(); }, []);
 
+    useEffect(() => { fetchOwners(); }, []);
+
     const [category, setItems] = useState([]);
+
     const fetchCategories = async () => {
         const response = await fetch('http://localhost:8080/api/categories');
         const category = await response.json();
         setItems(category);
+    }
+
+    const [owners, setOwners] = useState([]);
+
+    const fetchOwners = async () => {
+        const response = await fetch('http://localhost:8080/users/renters/all');
+        const owners = await response.json();
+        setOwners(owners);
     }
 
     const {register, handleSubmit, errors} = useForm();
@@ -40,21 +51,31 @@ function AddItem() {
 
             <div className="inputs">
                 <h4>What's your item?</h4>
-                <input className="add-item-item-name" placeholder="Item name" name="itemName" ref={register({required: true, minLength: 3})}/>
-                {errors.itemName && <p className="error-message">Item name is too short!</p>}
+                <input className="add-item-item-name" placeholder="Item name" name="name" ref={register({required: true, minLength: 3})}/>
+                {errors.name && <p className="error-message">Item name is too short!</p>}
+            <p><br/> puki dodawanie obrazków nie działa to trzeba podać url bo w bazie jest not null: </p>
+            <input className="add-item-item-name" placeholder="photo src" name="picUrl" ref={register({required: true, minLength: 3})}/>
+                {errors.picUrl && <p className="error-message">url too short</p>}
 
                 <div id="input-image">
                     <a><img id="icon" src={require('../../assets/icon-with-mountain.svg')}/></a>
                     <a href="#" className="upload-image"> Click to upload image</a>
                 </div>
-
                 <h2 className="add-item-h2"> Describe your item</h2>
                 <h4><label htmlFor="quest-type">Categories</label></h4>
-                <select className="type-selector" id="quest-type" name="category" ref={register}>
+                <select className="type-selector" id="quest-type" name="category.id" ref={register}>
                     <option value="" selected disabled hidden>Choose...</option>
                     {category.map(element => (
                         <option value={element.id}>{element.description}</option>
                     ))} </select>
+
+                <p><br/>trzeba wybrać usera puki nie mamy sesji:</p>
+                <select className="type-selector" id="quest-type" name="owner.id" ref={register}>
+                    <option value="" selected disabled hidden>Choose...</option>
+                    {owners.map(element => (
+                        <option value={element.id}>{element.firstName + element.lastName}</option>
+                    ))} </select>
+
 
                 <h4>Description:</h4>
                 <textarea className="item-description" name="description" placeholder="Describe your item..."
@@ -64,22 +85,7 @@ function AddItem() {
                 <h2 className="add-item-h2">How much? </h2>
                 <h4>Price (PLN/per day):</h4>
                 <input className="item-price" name="price" placeholder="Your price per day" ref={register({required: true, minLength: 1})}/>
-                <h2 className="add-item-h2">Your personal details and address</h2>
-                <h4>Name:</h4>
-                <input className="item-details" name="name" placeholder="Enter your name" ref={register({required: true, minLength: 3})}/>
-                {errors.name && <p className="error-message">Name is too short!</p>}
-                <h4>City:</h4>
-                <input className="item-details" name="city" placeholder="Enter your city" ref={register({required: true, minLength: 3})}/>
-                {errors.city && <p className="error-message">City name is too short!</p>}
-                <h4>Home address:</h4>
-                <input className="item-details" name="address" placeholder="What is the address?" ref={register({required: true, minLength: 3})}/>
-                {errors.address && <p className="error-message">Address is too short!</p>}
-                <h4>Post-code:</h4>
-                <input className="item-details" name="postCode" placeholder="Post-code" ref={register({required: true, minLength: 6, maxLength: 6})}/>
-                {errors.postCode && <p className="error-message">Post-Code number must be in format XX-XXX</p>}
-                <h4>Phone number:</h4>
-                <input className="item-details" name="phoneNumber" placeholder="Your phone number" ref={register({required: true, value: /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/ })}/>
-                {errors.phoneNumber && <p className="error-message">Phone number is not valid!</p>}
+
                 <h6>
                     By Clicking "Add item for rent", you agree to our <a href="#">Terms</a> and that you have
                     read our <a href="#"> Data Policy</a>.

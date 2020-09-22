@@ -7,10 +7,10 @@ function ItemContent({match}) {
     const [itemIdValue, setItemID] = useState(match.params.id);
 
     return (
-        <React.Fragment>
+        <div className="wrapper">
             <HeaderWithLogo />
             <EditItem value={itemIdValue}/>
-        </React.Fragment>
+        </div>
     );
 }
 

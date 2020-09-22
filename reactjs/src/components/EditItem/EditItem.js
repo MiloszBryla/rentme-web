@@ -41,8 +41,20 @@ function EditItem(id) {
 
     const {register, handleSubmit, errors} = useForm();
 
-    const onSubmit = (data) => {
+    const onSubmit =  async (data) => {
+        const headers = new Headers();
+        headers.append('Content-type', 'application/json');
         console.log(data)
+
+        const options = {
+            method: 'PUT',
+            headers,
+            body: JSON.stringify(data)
+        }
+
+        const request = new Request('http://localhost:8080/api/items', options);
+        const response = await fetch(request);
+        const status = await response.status;
     }
 
     return (
@@ -51,13 +63,13 @@ function EditItem(id) {
             <h1 id="lets-get-started">Here you can edit your item</h1>
             <div className="inputs">
                 <h4>Item name</h4>
-                <input className="item-price" name="itemName" placeholder={item.name} ref={register({required: true, minLength: 3})}/>
+                <input className="item-price" name="name" placeholder={item.name} ref={register({required: true, minLength: 3})}/>
                 {errors.itemName && <p className="error-message">Item name is too short!</p>}
                 <h2>Item Info</h2>
                 <h4><label htmlFor="quest-type">Category</label></h4>
-                <select className="type-selector" id="quest-type" name="quest-type">
+                <select className="type-selector" id="quest-type" name="category.id">
                     {category.map(element => (
-                        <option>{element.description}</option>
+                        <option value={element.id}>{element.description}</option>
                     ))}
                 </select>
 

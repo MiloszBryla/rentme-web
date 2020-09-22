@@ -5,10 +5,10 @@ import AddItem from "./AddItem";
 function AddItemStructure() {
 
     return (
-        <React.Fragment>
+        <div className="wrapper">
             <HeaderWithLogo/>
             <AddItem/>
-        </React.Fragment>
+        </div>
     );
 }
 

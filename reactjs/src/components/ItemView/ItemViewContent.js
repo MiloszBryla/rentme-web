@@ -27,6 +27,7 @@ function ItemViewContent(id) {
         const item = await response.json();
         setUser(item.owner);
         setItem(item);
+        console.log(user);
     }
     // google api key needed below
 //    Geocode.setApiKey("");
@@ -101,15 +102,14 @@ function ItemViewContent(id) {
                     <div className="description-renter-name">
                         <button className="see-renter" type="submit">{user.firstName} {user.lastName}</button>
                         <p className="item-heading-2 item-heading-description">Description</p>
-
                         <p className="item-normal-text">{item.description}</p>
                     </div>
                     <div>
-                       <Link to={itemLinkToPay}> <button className="button book-now" type="submit">Rent Me!</button></Link>
+                       <Link to={itemLinkToPay}><button className="button book-now" type="submit">Rent Me!</button></Link>
                     </div>
                 </div>
                     <p className="item-heading-2 item-location">Location</p>
-                    <p>{user.address}, {user.postCode} {user.city}</p>
+                    <p>{user.address}, {user.postCode} {user.city} {user.lat} {user.lng}</p>
                     <ItemViewMap lat={user.lat} lon={user.lng}/>
             </div>
         </div>
