@@ -15,12 +15,9 @@ import LandingPage from '../LandingPage/LandingPage';
 import AddItemContent from "../AddItem/AddItemContent";
 import ErrorPage from '../ErrorPage/ErrorPage';
 import ItemsList from '../ItemsList/ItemsList';
-
 import ItemView from "../ItemView/ItemView";
 import PaymentCont from "../Payment/PaymentsCont";
-
-
-
+import Dashboard from "../Dashboard/Dashboard";
 
 function App() {
    return (
@@ -37,6 +34,7 @@ function App() {
            <Route path="/item/view/:id" exact component={ItemView}/>
            <Route path="/login" component={Login}/>
            <Route path="/items-list/:searchPhrase" component={ItemsList}/>
+           <Route path="/dashboard/:id" component={Dashboard}/>
            <Route path="*" component={ErrorPage} />
          </Switch>
        </div>

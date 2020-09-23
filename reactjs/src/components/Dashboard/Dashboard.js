@@ -1,20 +1,17 @@
 import React from 'react';
 import HeaderWithLogo from '../Header/HeaderWithLogo'
-import AboutUsContent from './AboutUsContent'
-import Login from "../Login/Login";
+import DashboardContent from './DashboardContent'
 import "../../css/header-and-body.css";
-import "../../css/about.css";
 
-function About(){
+function Dashboard(){
     return (
         <div>
-            <Login />
             <div className="wrapper">
                 <HeaderWithLogo />
-                <AboutUsContent />
+                <DashboardContent />
             </div>
         </div>
     );
 }
 
-export default About;
+export default Dashboard;

@@ -18,7 +18,7 @@
 }
 
 .items-list-item{
-    border-radius: 15px;
+    border-radius: 10px;
     /*border: 1px solid rgba(255, 255, 255);*/
     display: grid;
     grid-template-rows: 3fr 2.6fr;

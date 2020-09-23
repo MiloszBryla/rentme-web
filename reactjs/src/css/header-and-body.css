@@ -56,7 +56,6 @@ body {
 
 .menu ul li {
     display: inline-block;
-
 }
 
 .menu ul li a {
@@ -77,7 +76,6 @@ body {
     border: 1px solid white;
     margin-left: 1vw;
     transition-duration: 0.5s;
-
 }
 
 .menu ul li button:hover {
