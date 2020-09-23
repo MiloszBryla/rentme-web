@@ -1,87 +1,40 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import "../../css/header-and-body.css";
 import "../../css/dashboard.css";
 import TemplateItemImage from "./templateItemImage.jpg"
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Redirect,
+    Link,
+} from "react-router-dom";
+import PaymentCont from "../Payment/PaymentsCont";
+import Renting from "./DashboardComponents/Renting"
 
+function DashboardContent(id){
 
-function DashboardContent(){
+    const [userId, setUserID] = useState(id.value);
+    const [user, setUser] = useState([]);
+
+    useEffect(() => {
+        fetchUserDetails(id);
+    }, []);
+
+    const fetchUserDetails = async (userId) => {
+        const response = await fetch(`http://localhost:8080/api/users/renters/${userId}`);
+        const user = await response.json();
+        setUser(user);
+        console.log(user);
+    }
+
     return (
-        <div>
-            <div className="dashboard">
-                <div className="dashboard-header">
-                    <a className="bookmark renting" href="#">Renting</a>
-                    <a className="bookmark lending" href="#">Lending</a>
-                    <a className="bookmark account" href="#">Account</a>
-                </div>
-                <div className="dashboard-content-container">
-                    <h7>Borrowed Items</h7>
-                    <hr/>
-                    <div className="dashboard-items-list">
-                        <div className="dashboard-items-list-header">
-                            <p></p>
-                            <p className="dashboard-items-list-header-label">Name</p>
-                            <p className="dashboard-items-list-header-label">Status</p>
-                            <p className="dashboard-items-list-header-label">Start of booking</p>
-                            <p className="dashboard-items-list-header-label">Date of return</p>
-                        </div>
-                        <a className="dashboard-item" href="#">
-                            <div className="dashboard-item-photo-container">
-                                <img className="dashboard-item-photo" src={TemplateItemImage}/>
-                            </div>
-                            <span>Item name</span>
-                            <span>Item status</span>
-                            <span>Start of booking</span>
-                            <span>Date of return</span>
-                        </a>
-                        <a className="dashboard-item" href="#">
-                            <div className="dashboard-item-photo-container">
-                                <img className="dashboard-item-photo" src={TemplateItemImage}/>
-                            </div>
-                            <span>Item name</span>
-                            <span>Item status</span>
-                            <span>Start of booking</span>
-                            <span>Date of return</span>
-                        </a>
-                        <a className="dashboard-item" href="#">
-                            <div className="dashboard-item-photo-container">
-                                <img className="dashboard-item-photo" src={TemplateItemImage}/>
-                            </div>
-                            <span>Item name</span>
-                            <span>Item status</span>
-                            <span>Start of booking</span>
-                            <span>Date of return</span>
-                        </a>
-                        <a className="dashboard-item" href="#">
-                            <div className="dashboard-item-photo-container">
-                                <img className="dashboard-item-photo" src={TemplateItemImage}/>
-                            </div>
-                            <span>Item name</span>
-                            <span>Item status</span>
-                            <span>Start of booking</span>
-                            <span>Date of return</span>
-                        </a>
-                        <a className="dashboard-item" href="#">
-                            <div className="dashboard-item-photo-container">
-                                <img className="dashboard-item-photo" src={TemplateItemImage}/>
-                            </div>
-                            <span>Item name</span>
-                            <span>Item status</span>
-                            <span>Start of booking</span>
-                            <span>Date of return</span>
-                        </a>
-                        <a className="dashboard-item" href="#">
-                            <div className="dashboard-item-photo-container">
-                                <img className="dashboard-item-photo" src={TemplateItemImage}/>
-                            </div>
-                            <span>Item name</span>
-                            <span>Item status</span>
-                            <span>Start of booking</span>
-                            <span>Date of return</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <Router>
+            <Switch>
+                <Route path="/*" component={Renting}/>
+                <Route path="/renting" component={Renting}/>
+            </Switch>
+        </Router>
     );
 }
 
