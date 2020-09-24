@@ -4,17 +4,17 @@ import "../../../css/dashboard.css";
 import TemplateItemImage from "../templateItemImage.jpg"
 import {Link} from "react-router-dom";
 
-function Renting(userId){
+function Lending(userId){
     return (
         <div>
             <div className="dashboard">
                 <div className="dashboard-header">
-                    <Link className="active-bookmark"   to={"/" + "dashboard/" + "3" + "/renting"}>Renting</Link>
-                    <Link className="bookmark"          to={"/" + "dashboard/" + "3" + "/lending"}>Lending</Link>
+                    <Link className="bookmark"          to={"/" + "dashboard/" + "3" + "/renting"}>Renting</Link>
+                    <Link className="active-bookmark"   to={"/" + "dashboard/" + "3" + "/lending"}>Lending</Link>
                     <Link className="bookmark"          to={"/" + "dashboard/" + "3" + "/account"}>Account</Link>
                 </div>
                 <div className="dashboard-content-container">
-                    <h7>Borrowed Items</h7>
+                    <h7>Your Items</h7>
                     <hr/>
                     <div className="dashboard-items-list">
                         <div className="dashboard-items-list-header">
@@ -85,4 +85,4 @@ function Renting(userId){
     );
 }
 
-export default Renting;
+export default Lending;

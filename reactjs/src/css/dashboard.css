@@ -30,8 +30,17 @@
 }
 
 .bookmark:hover{
-    background: white;
     font-weight: 600;
+}
+
+.active-bookmark{
+    height: 100%;
+    padding-top: 15px;
+    margin: 0;
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    background: white;
 }
 
 .dashboard-menu li {
