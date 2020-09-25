@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import HeaderWithLogo from '../Header/HeaderWithLogo'
 import DashboardContent from './DashboardContent'
 import "../../css/header-and-body.css";
+import Login from "../Login/Login"
 
 function Dashboard({match}){
 
@@ -9,6 +10,7 @@ function Dashboard({match}){
 
     return (
         <div>
+            <Login />
             <div className="wrapper">
                 <HeaderWithLogo />
                 <DashboardContent value={userIdValue}/>

@@ -200,6 +200,7 @@ button:focus, textarea {
     justify-content: center;
     align-items: center;
     color: black;
+
 }
 
 .popup-content {
@@ -208,7 +209,7 @@ button:focus, textarea {
     border-radius: 10px;
     color: black;
     padding: 30px 20px 20px 20px;
-    background: white;
+    background: rgba(255, 255, 255, 1);
     text-align: center;
 }
 
@@ -244,10 +245,10 @@ button:focus, textarea {
 .login-data-input-decoration-wrapper{
     justify-self: center;
     align-self: center;
-    border-radius: 10px;
+/*    border-radius: 10px;*/
     height: 46px;
     width: 290px;
-    background: linear-gradient(90deg, rgba(247,0,70,1) 0%, rgb(36, 2, 156) 100%);
+/*    background: linear-gradient(90deg, rgba(255,82,131,1) 0%, rgba(62,45,255,1) 100%);*/
     text-align: center;
     overflow: hidden;
 }
@@ -257,7 +258,7 @@ button:focus, textarea {
     top: 2px;
     margin-top: auto;
     border: none;
-    border-radius: 8px;
+    border-bottom: 2px solid rgba(148, 0, 211, 0.15);
     padding: 5px;
     height: 42px;
     width: 286px;
@@ -358,7 +359,7 @@ a {
 }
 
 .login-button-gradient-wrapper{
-    background: linear-gradient(90deg, rgba(247,0,70,1) 0%, rgba(36, 2, 156) 100%);
+/*    background: linear-gradient(90deg, rgba(255,82,131,1) 0%, rgba(74,72,255,1) 100%);*/
     height: 44px;
     width: 120px;
     margin: 60px auto 0 auto;
@@ -373,7 +374,7 @@ a {
     color:black;
     text-align:center;
     letter-spacing: 2px;
-    border: none;
+    border: 2px solid rgba(148, 0, 211, 0.3);
     border-radius: 8px;
     width: 116px;
     height: 40px;
@@ -382,14 +383,14 @@ a {
     cursor: pointer;
     transition-duration: 0.5s;
 }
-
+/*
 .login-button-gradient-wrapper.rec{
     width: 124px;
     margin: 40px auto 0 auto;
 }
 .loginRecBtn.rec{
     width: 120px;
-}
+}*/
 
 .login-button-gradient-wrapper:hover{
     color: white;
@@ -397,12 +398,13 @@ a {
 }
 
 .loginRecBtn:hover{
-    color: white;
-    top: 0;
+    color: black;
+/*    top: 0;
     height: 44px;
-    width: 120px;
-    background: rgba(225, 225, 225, 0.4);
+    width: 120px;*/
+    background: rgba(148, 0, 211, 0.1);
     transition-duration: 0.5s;
+    border: 2px solid rgba(148, 0, 211, 0.2);
 }
 
 .loginRecBtn.rec:hover{
