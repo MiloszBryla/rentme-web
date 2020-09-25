@@ -11,7 +11,7 @@ import SortingOptions from "./ItemsListComponents/SortingOptions"
 import ItemsListMap from "../Map/ItemsListMap"
 
 
-function ItemsListContent(searchPhrase) {
+function ItemsListContent(searchPhrase){
     let n = -0.1;
     const [searchPhraseContent, setSearchPhrase] = useState(searchPhrase.phrase);
     const [fetchedItems, setItems] = useState([]);
@@ -42,7 +42,6 @@ function ItemsListContent(searchPhrase) {
                     <div className="items-list">
                         {
                             fetchedItems.map(function(theItem){return <Item orderly={n+=0.1} item={theItem}/>;
-
                             })
                         }
                     </div>
