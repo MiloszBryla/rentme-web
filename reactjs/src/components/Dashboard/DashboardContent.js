@@ -24,18 +24,26 @@ function DashboardContent(id){
     }, []);
 
     const fetchUserDetails = async (userId) => {
-        const response = await fetch(`http://localhost:8080/api/users/renters/${userId}`);
+        const response = await fetch(`http://localhost:8080/users/renters/${userId}`);
         const user = await response.json();
         setUser(user);
-        console.log(user);
     }
 
     return (
         <Router>
             <Switch>
-                <Route path={"/" + "dashboard/" + "3" + "/renting"} component={Renting}/>
-                <Route path={"/" + "dashboard/" + "3" + "/lending"} component={Lending}/>
-                <Route path={"/" + "dashboard/" + "3" + "/account"} component={Account}/>
+                <Route path={"/" + "dashboard/" + userId + "/renting"}
+                       render={(props) => (
+                    <Renting {...props} userId={userId} />
+                    )}/>
+                <Route path={"/" + "dashboard/" + userId + "/lending"}
+                       render={(props) => (
+                           <Lending {...props} userId={userId} />
+                       )}/>
+                <Route path={"/" + "dashboard/" + userId + "/account"}
+                       render={(props) => (
+                    <Account {...props} userId={userId} />
+                )}/>/>
 
             </Switch>
         </Router>
