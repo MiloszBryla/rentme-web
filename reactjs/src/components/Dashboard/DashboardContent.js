@@ -43,7 +43,11 @@ function DashboardContent(id){
                 <Route path={"/" + "dashboard/" + userId + "/account"}
                        render={(props) => (
                     <Account {...props} userId={userId} />
-                )}/>/>
+                )}/>
+                <Route path={"/" + "dashboard/" + userId }
+                       render={(props) => (
+                           <Renting {...props} userId={userId} />
+                       )}/>
 
             </Switch>
         </Router>
