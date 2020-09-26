@@ -18,6 +18,8 @@ import ItemsList from '../ItemsList/ItemsList';
 import ItemView from "../ItemView/ItemView";
 import PaymentCont from "../Payment/PaymentsCont";
 import Dashboard from "../Dashboard/Dashboard";
+import SignUp from "../SignUp/SignUp";
+
 
 function App() {
    return (
@@ -35,6 +37,7 @@ function App() {
            <Route path="/login" component={Login}/>
            <Route path="/items-list/:searchPhrase" component={ItemsList}/>
            <Route path="/dashboard/:id" component={Dashboard}/>
+           <Route path="/signup" component={SignUp}/>
            <Route path="*" component={ErrorPage} />
          </Switch>
        </div>
