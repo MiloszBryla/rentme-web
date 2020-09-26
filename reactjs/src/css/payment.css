@@ -43,8 +43,9 @@
 
 .label {
     margin-bottom: 10px;
-    display: block;
     color: black;
+    display: block;
+    align-content: center;
 }
 
 .icon-container {
@@ -149,4 +150,18 @@ span.price {
     justify-items: start;
     max-width: 300px;
 
+}
+
+
+.payment-text-agree{
+    color: black;
+    text-align: center;
+}
+
+.button-payment{
+    text-align: center;
+}
+
+.button-color{
+    background-color: forestgreen !important;
 }
