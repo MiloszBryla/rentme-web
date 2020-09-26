@@ -2,7 +2,8 @@ import React, {useRef} from "react";
 import {useForm} from "react-hook-form";
 import "../../css/header-and-body.css";
 import "../../css/sign-up.css";
-import Header from '../Header/Header'
+import Login from "../Login/Login";
+import HeaderWithLogo from "../Header/HeaderWithLogo";
 
 
 function SignUp() {
@@ -13,14 +14,17 @@ function SignUp() {
     };
 
     return (
+
         <React.Fragment>
-            <Header/>
+            <HeaderWithLogo/>
+            <Login />
+            <div className="wrapper">
             <div className="sign-up-container">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="form">
-                        <div className="title">
+                        <div className="title-text">
                             <h2 className="sign-up-h2">Sign up</h2>
-                            <h3>It's quick and easy!</h3>
+                            <h3 className="">It's quick and easy!</h3>
                         </div>
                         <div className="input">
                             <p>First name</p>
@@ -162,16 +166,20 @@ function SignUp() {
                             </button>
                             <div className="warning-message hidden">
                                 <p>All fields are required</p></div>
-                            <h6>
-                                By Clicking "Sign me up", you agree to our <a href="#">Terms</a> and that you have
-                                read our <a href="#"> Data Policy</a>.
-                            </h6>
                         </div>
+
                     </div>
                     </div>
+                    <h6 className="text-agreement">
+                        By Clicking "Sign me up", you agree to our <a href="#">Terms</a> and that you have
+                        read our <a href="#"> Data Policy</a>.
+                    </h6>
                 </form>
+
+            </div>
             </div>
         </React.Fragment>
+
     );
 }
 

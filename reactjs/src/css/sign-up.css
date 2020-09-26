@@ -33,8 +33,17 @@
 }
 
 .title {
+    grid-column-start: 2;
+    grid-column-end: -1;
+}
+
+.title-text {
     grid-column-start: 1;
     grid-column-end: -1;
+}
+
+.text-agreement{
+    text-align: center;
 }
 
 .sign-up-submit-button {
@@ -58,7 +67,6 @@
     color: white;
     margin-bottom: 20px;
     transition: all 0.2s;
-    align-self: center;
 }
 
 .signUpBtn:hover {
@@ -67,7 +75,7 @@
     cursor: pointer;
 }
 
-h3 {
+.sign-up-text {
     font-size: 20px;
     display: inline;
     text-align: center;

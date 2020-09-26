@@ -12,7 +12,7 @@ function Menu() {
           </li>
 
           <li>
-              <Link to="/login">
+              <Link to="/signup">
                   <button type="text">Sign up</button>
               </Link>
           </li>
