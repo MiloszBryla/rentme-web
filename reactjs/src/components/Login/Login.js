@@ -9,14 +9,15 @@ import {useForm} from "react-hook-form";
 function Login() {
 
 
-    const fetchItemDetails = async (data) => {
+    const authoriseUser = async (data) => {
         console.log("asd");
-        await fetch('http://localhost:8080/test', {
-            method: 'PUT',
+        await fetch('http://localhost:8080/login', {
+            method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
+            credentials: 'include',
             body: JSON.stringify(data),
         });
     }
@@ -25,7 +26,7 @@ function Login() {
     const {register, handleSubmit, errors} = useForm();
 
     const onSubmit = (data) => {
-        fetchItemDetails(data.email);
+        authoriseUser(data);
     };
 
     function hideLogin() {

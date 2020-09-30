@@ -34,6 +34,7 @@ function Account(props){
         const request = new Request('http://localhost:8080/users', options);
         const response = await fetch(request);
         const status = await response.status;
+
     }
 
     return (
@@ -47,26 +48,29 @@ function Account(props){
                 <div className="dashboard-content-container acc-account">
                     <h7>Account settings</h7>
                     <form className="account-settings-form" onSubmit={handleSubmit(onSubmit)}>
+
+                        <input name="id" value={user.id} ref={register()} style={{display: "none"}}/>
+
                         <div className="account-settings-section acc-name">
                             <p className="acc-title">Name and E-mail</p>
 
                             <div className="acc-input-container acc-fist-name">
                                 <p className="acc-input-label">First name</p>
-                                <input className="acc-input" placeholder={user.firstName} name="firstName"
-                                       ref={register({required: true, minLength: 3})}/>
+                                <input className="acc-input" name="firstName" defaultValue={user.firstName}
+                                    ref={register()}/>
                                 {errors.firstName && <p className="error-message">Name is too short!</p>}
                             </div>
                             <div className="acc-input-container acc-last-name">
                                 <p className="acc-input-label">Last name</p>
-                                <input className="acc-input" placeholder={user.lastName} name="lastName"
-                                       ref={register({required: true, minLength: 3})}/>
+                                <input className="acc-input" defaultValue={user.lastName} name="lastName"
+                                       ref={register()}/>
                                 {errors.lastName && <p className="error-message">Last name is too short!</p>}
                             </div>
                             <div className="acc-input-container acc-email">
                                 <p className="acc-input-label">E-mail</p>
-                                <input className="acc-input" placeholder={user.email} name="email"
-                                       ref={register({required: true, minLength: 3})}/>
-                                {errors.lastName && <p className="error-message">E-mail is too short!</p>}
+                                <input className="acc-input" defaultValue={user.email} name="email"
+                                       ref={register()}/>
+                                {errors.email && <p className="error-message">E-mail is too short!</p>}
                             </div>
                         </div>
                         <div className="account-settings-section acc-img">
@@ -79,21 +83,21 @@ function Account(props){
 
                             <div className="acc-input-container acc-address">
                                 <p className="acc-input-label">Street and number</p>
-                                <input className="acc-input" placeholder={user.address} name="address"
-                                       ref={register({required: true, minLength: 3})}/>
+                                <input className="acc-input" defaultValue={user.address} name="address"
+                                       ref={register()}/>
                                 {errors.address && <p className="error-message">Address is too short!</p>}
                             </div>
                             <div className="acc-input-container acc-post-code">
                                 <p className="acc-input-label">Postal code</p>
-                                <input className="acc-input" placeholder={user.postCode} name="postCode"
-                                       ref={register({required: true, minLength: 3})}/>
-                                {errors.LastName && <p className="error-message">Incorrect postal code input!</p>}
+                                <input className="acc-input" defaultValue={user.postCode} name="postCode"
+                                       ref={register()}/>
+                                {errors.postCode && <p className="error-message">Incorrect postal code input!</p>}
                             </div>
                             <div className="acc-input-container acc-city">
                                 <p className="acc-input-label">City</p>
-                                <input className="acc-input" placeholder={user.city} name="city"
-                                       ref={register({required: true, minLength: 3})}/>
-                                {errors.LastName && <p className="error-message">City name is too short!</p>}
+                                <input className="acc-input" defaultValue={user.city} name="city"
+                                       ref={register()}/>
+                                {errors.city && <p className="error-message">City name is too short!</p>}
                             </div>
                         </div>
 
@@ -101,16 +105,16 @@ function Account(props){
                             <div>
                                 <p className="acc-title">Password</p>
                                 <div className="acc-input-container acc-password">
-                                    <p className="acc-input-label">New password:</p>
-                                    <input className="acc-input" placeholder="" name="password"
-                                           ref={register({required: true, minLength: 3})}/>
-                                    {errors.LastName && <p className="error-message">Wrong postal code input!</p>}
+                                    <p className="acc-input-label">Password:</p>
+                                    <input className="acc-input" type="password" defaultValue={user.city} name="password"
+                                           ref={register()}/>
+                                    {errors.password && <p className="error-message">Wrong postal code input!</p>}
                                 </div>
                                 <div className="acc-input-container acc-password-confirmation">
-                                    <p className="acc-input-label">Confirm password:</p>
-                                    <input className="acc-input" placeholder="" name="password-confirmation"
-                                           ref={register({required: true, minLength: 3})}/>
-                                    {errors.LastName && <p className="error-message">City name is too short!</p>}
+                                    <p className="acc-input-label">Repeat password:</p>
+                                    <input className="acc-input" type="password" name="passwordConfirmation"
+                                           ref={register()}/>
+                                    {errors.passwordConfirmation && <p className="error-message">Password inputs do not match</p>}
                                 </div>
                             </div>
                         </div>
