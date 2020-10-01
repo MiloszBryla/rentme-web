@@ -31,6 +31,7 @@ function Login() {
 
     function hideLogin() {
         document.querySelector(".wrapper").style.display = "flex";
+        document.querySelector(".wrapper").style.justifyContent = "center";
         fadeIn("wrapper", 75)
         document.querySelector(".popup").style.display = "none";
     }

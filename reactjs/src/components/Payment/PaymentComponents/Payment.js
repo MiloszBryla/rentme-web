@@ -48,12 +48,13 @@ function Payment() {
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-                        <label className="label">
-                            <input  type="checkbox" checked="checked" name="sameadr"/> I accept all terms & conditions
-                        </label>
-                        <input type="submit" value="Pay" className="btn"/>
+                        <div className="button-section">
+                            <h3 className="payment-text-agree">I accept all terms & conditions</h3>
+                            <div className="button-payment">
+                            <button className="button button-color">Submit</button>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
