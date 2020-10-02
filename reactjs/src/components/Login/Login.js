@@ -4,13 +4,14 @@ import "../../css/header-and-body.css";
 import closeIcon from "../../assets/close-window.svg"
 import RecoverAcc from "../RecoverAcc/RecoverAcc";
 import {useForm} from "react-hook-form";
+import { useHistory } from "react-router-dom";
+
 
 
 function Login() {
-
+    const history = useHistory();
 
     const authoriseUser = async (data) => {
-        console.log("asd");
         await fetch('http://localhost:8080/login', {
             method: 'POST',
             headers: {
@@ -20,6 +21,7 @@ function Login() {
             credentials: 'include',
             body: JSON.stringify(data),
         });
+        history.push("/dashboard/1");
     }
 
 

@@ -19,6 +19,7 @@ import ItemView from "../ItemView/ItemView";
 import PaymentCont from "../Payment/PaymentsCont";
 import Dashboard from "../Dashboard/Dashboard";
 import SignUp from "../SignUp/SignUp";
+import history from "../History/History"
 
 
 function App() {
