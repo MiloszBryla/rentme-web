@@ -19,7 +19,12 @@ function SignUp() {
             body: JSON.stringify(data)
         }
 
-        const request = new Request('http://localhost:8080/users', options);
+        const request = new Request('http://localhost:8080/users', options,
+            {
+                method: 'GET',
+                credentials: 'include',
+
+            });
         const response = await fetch(request);
         const status = await response.status;
 

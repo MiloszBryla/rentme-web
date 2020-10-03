@@ -19,14 +19,24 @@ function ItemDetails(id) {
     }, []);
 
     const fetchItemDetails = async (itemId) => {
-        const response = await fetch(`http://localhost:8080/api/items/${itemId}`);
+        const response = await fetch(`http://localhost:8080/api/items/${itemId}`,
+            {
+                method: 'GET',
+                credentials: 'include',
+
+            });
         const item = await response.json();
         console.log(item);
         setItem(item);
     }
 
     const fetchUserName = async (itemId) => {
-        const response = await fetch(`http://localhost:8080/users/find-by/item/${itemId}`);
+        const response = await fetch(`http://localhost:8080/users/find-by/item/${itemId}`,
+            {
+                method: 'GET',
+                credentials: 'include',
+
+            });
         const user = await response.json();
         setUser(user);
     }

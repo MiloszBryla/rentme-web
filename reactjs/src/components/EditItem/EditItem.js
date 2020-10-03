@@ -23,18 +23,33 @@ function EditItem(id) {
     }, []);
 
     const fetchCategories = async () => {
-        const response = await fetch('http://localhost:8080/api/categories');
+        const response = await fetch('http://localhost:8080/api/categories',
+            {
+                method: 'GET',
+                credentials: 'include',
+
+            });
         const category = await response.json();
         setItems(category);
     }
     const fetchUserAddress = async (itemId) => {
-        const response = await fetch(`http://localhost:8080/renters/find-by/item/${itemId}`);
+        const response = await fetch(`http://localhost:8080/renters/find-by/item/${itemId}`,
+            {
+                method: 'GET',
+                credentials: 'include',
+
+            });
         const address = await response.json();
         setAddress(address);
     }
 
     const fetchItemDetails = async (itemId) => {
-        const response = await fetch(`http://localhost:8080/api/items/${itemId}`);
+        const response = await fetch(`http://localhost:8080/api/items/${itemId}`,
+            {
+                method: 'GET',
+                credentials: 'include',
+
+            });
         const item = await response.json();
         setItem(item);
     }

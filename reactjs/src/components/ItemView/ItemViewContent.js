@@ -23,7 +23,12 @@ function ItemViewContent(id) {
     }, []);
 
     const fetchItemDetails = async (itemId) => {
-        const response = await fetch(`http://localhost:8080/api/items/${itemId}`);
+        const response = await fetch(`http://localhost:8080/api/items/${itemId}`,
+            {
+                method: 'GET',
+                credentials: 'include',
+
+            });
         const item = await response.json();
         setUser(item.owner);
         setItem(item);

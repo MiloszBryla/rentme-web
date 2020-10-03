@@ -17,33 +17,22 @@ function Lending(props){
     const fetchUserDetails = async () => {
         const response = await fetch(`http://localhost:8080/users/renters/${props.userId}`,{
             method: 'GET',
-            mode:'no-cors',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
             credentials: 'include',
 
         });
-        // const user = await response.json();
-        // setUser(user);
+        const user = await response.json();
+        setUser(user);
     }
 
     const fetchItems = async () => {
         const response = await fetch(`http://localhost:8080/api/items/users/${props.userId}`,
         {
             method: 'GET',
-            mode:'no-cors',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                "Authorization": "Bearer "
-            },
             credentials: 'include',
 
         });
-        // const items = await response.json();
-        // setItems(items);
+        const items = await response.json();
+        setItems(items);
     }
 
     useEffect(() => {

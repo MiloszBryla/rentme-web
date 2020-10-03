@@ -13,7 +13,12 @@ function AddItem() {
     const [category, setItems] = useState([]);
 
     const fetchCategories = async () => {
-        const response = await fetch('http://localhost:8080/api/categories');
+        const response = await fetch('http://localhost:8080/api/categories',
+            {
+                method: 'GET',
+                credentials: 'include',
+
+            });
         const category = await response.json();
         setItems(category);
     }
@@ -21,7 +26,12 @@ function AddItem() {
     const [owners, setOwners] = useState([]);
 
     const fetchOwners = async () => {
-        const response = await fetch('http://localhost:8080/users/renters');
+        const response = await fetch('http://localhost:8080/users/renters',
+            {
+                method: 'GET',
+                credentials: 'include',
+
+            });
         const owners = await response.json();
         setOwners(owners);
     }

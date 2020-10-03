@@ -19,12 +19,22 @@ function ItemsListContent(searchPhrase){
     const fetchItems = async () => {
         if (searchPhraseContent.startsWith("category: ")) {
             const categoryToBrowse = searchPhraseContent.slice(10);
-            const response = await fetch(`http://localhost:8080/api/items/categories/${categoryToBrowse}`);
+            const response = await fetch(`http://localhost:8080/api/items/categories/${categoryToBrowse}`,
+                {
+                    method: 'GET',
+                    credentials: 'include',
+
+                });
             const items = await response.json();
             setItems(items);
         }
         else{
-            const response = await fetch(`http://localhost:8080/api/items/list/${searchPhraseContent}`);
+            const response = await fetch(`http://localhost:8080/api/items/list/${searchPhraseContent}`,
+                {
+                    method: 'GET',
+                    credentials: 'include',
+
+                });
             const items = await response.json();
             setItems(items);
         }
