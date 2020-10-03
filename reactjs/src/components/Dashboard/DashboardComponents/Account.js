@@ -5,13 +5,16 @@ import "../../../css/header-and-body.css";
 import "../../../css/account-settings.css";
 import TemplateProfileImage from "./templateProfileImage.svg"
 
-function Account(props){
+function Account(props) {
 
     const {register, handleSubmit, errors} = useForm();
     const [user, setUser] = useState([]);
 
     const fetchUserDetails = async () => {
-        const response = await fetch(`http://localhost:8080/users/renters/${props.userId}`);
+        const response = await fetch(`http://localhost:8080/users/renters/${props.userId}`, {
+            method: 'GET',
+            credentials: 'include',
+        })
         const user = await response.json();
         setUser(user);
     }
@@ -20,7 +23,7 @@ function Account(props){
         fetchUserDetails();
     }, []);
 
-    const onSubmit =  async (data) => {
+    const onSubmit = async (data) => {
         const headers = new Headers();
         headers.append('Content-type', 'application/json');
         console.log(data)
@@ -28,6 +31,7 @@ function Account(props){
         const options = {
             method: 'PUT',
             headers,
+            credentials: 'include',
             body: JSON.stringify(data)
         }
 
@@ -41,9 +45,9 @@ function Account(props){
         <div>
             <div className="dashboard">
                 <div className="dashboard-header">
-                    <Link className="bookmark"          to={"/" + "dashboard/" + user.id + "/renting"}>Renting</Link>
-                    <Link className="bookmark"          to={"/" + "dashboard/" + user.id + "/lending"}>Lending</Link>
-                    <Link className="active-bookmark"   to={"/" + "dashboard/" + user.id + "/account"}>Account</Link>
+                    <Link className="bookmark" to={"/" + "dashboard/" + user.id + "/renting"}>Renting</Link>
+                    <Link className="bookmark" to={"/" + "dashboard/" + user.id + "/lending"}>Lending</Link>
+                    <Link className="active-bookmark" to={"/" + "dashboard/" + user.id + "/account"}>Account</Link>
                 </div>
                 <div className="dashboard-content-container acc-account">
                     <h7>Account settings</h7>
@@ -57,7 +61,7 @@ function Account(props){
                             <div className="acc-input-container acc-fist-name">
                                 <p className="acc-input-label">First name</p>
                                 <input className="acc-input" name="firstName" defaultValue={user.firstName}
-                                    ref={register()}/>
+                                       ref={register()}/>
                                 {errors.firstName && <p className="error-message">Name is too short!</p>}
                             </div>
                             <div className="acc-input-container acc-last-name">
@@ -106,7 +110,8 @@ function Account(props){
                                 <p className="acc-title">Password</p>
                                 <div className="acc-input-container acc-password">
                                     <p className="acc-input-label">Password:</p>
-                                    <input className="acc-input" type="password" defaultValue={user.city} name="password"
+                                    <input className="acc-input" type="password" defaultValue={user.city}
+                                           name="password"
                                            ref={register()}/>
                                     {errors.password && <p className="error-message">Wrong postal code input!</p>}
                                 </div>
@@ -114,7 +119,8 @@ function Account(props){
                                     <p className="acc-input-label">Repeat password:</p>
                                     <input className="acc-input" type="password" name="passwordConfirmation"
                                            ref={register()}/>
-                                    {errors.passwordConfirmation && <p className="error-message">Password inputs do not match</p>}
+                                    {errors.passwordConfirmation &&
+                                    <p className="error-message">Password inputs do not match</p>}
                                 </div>
                             </div>
                         </div>

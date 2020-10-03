@@ -24,9 +24,17 @@ function DashboardContent(id){
     }, []);
 
     const fetchUserDetails = async (userId) => {
-        const response = await fetch(`http://localhost:8080/users/renters/${userId}`);
-        const user = await response.json();
-        setUser(user);
+        const response = await fetch(`http://localhost:8080/users/renters/1`, {
+            method: 'GET',
+            mode: 'no-cors',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+        })
+        // const user = await response.json();
+        // console.log(response.json())
     }
 
     return (
