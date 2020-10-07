@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import HeaderWithLogo from '../Header/HeaderWithLogo'
 import AddItem from "./AddItem";
 
