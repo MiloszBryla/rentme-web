@@ -11,24 +11,33 @@ function SignUp() {
     const onSubmit = async (data) => {
         const headers = new Headers();
         headers.append('Content-type', 'application/json');
+        getCoordinates(data)
         console.log(data)
-
-        const options = {
-            method: 'POST',
-            headers,
-            body: JSON.stringify(data)
-        }
-
-        const request = new Request('http://localhost:8080/users', options,
+        data.is_admin = false;
+        data.enabled = 0;
+        data.role = "USER";
+        const request = new Request('http://localhost:8080/users',
             {
-                method: 'GET',
-                credentials: 'include',
+                method: 'POST',
+                headers,
+                body: JSON.stringify(data)
 
             });
         const response = await fetch(request);
         const status = await response.status;
 
     }
+
+    function getCoordinates(data) {
+        let apiUrl = "https://api.opencagedata.com/geocode/v1/json?q=Slusarska%2C%20Krakow&key=62619016a8b448b290c76150ccc9893d&language=pl&pretty=1";
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(response => {
+                data.lat = response.results[0].geometry.lat;
+                data.lng = response.results[0].geometry.lng;
+            })
+    }
+
 
     return (
 
@@ -78,27 +87,27 @@ function SignUp() {
                                        ref={register({required: "Last name is required"})}/>
                                 {errors.last_name && <p><b>{errors.last_name.message}</b></p>}
                             </div>
-                            <div className="input"><p>Building number</p>
-                                <input type="text"
-                                       className="input-field address-input"
-                                       placeholder="Building number"
-                                       name="building_number"
-                                       ref={register({
-                                           required: "Building number is required",
-                                           pattern: {
-                                               value: /^([0-9]*[1-9][0-9]*[a-zA-Z]?)$/i,
-                                               message: "invalid building number"
-                                           }
-                                       })}/>
-                                {errors.building_number && <p><b>{errors.building_number.message}</b></p>}
-                            </div>
-                            <div className="input"><p>Date of birth</p>
-                                <input type="date"
-                                       className="input-field DOB-input"
-                                       name="date_of_birth"
-                                       ref={register({required: "Date of birth is required"})}/>
-                                {errors.date_of_birth && <p><b>{errors.date_of_birth.message}</b></p>}
-                            </div>
+                            {/*// <div className="input"><p>Building number</p>*/}
+                            {/*    <input type="text"*/}
+                            {/*           className="input-field address-input"*/}
+                            {/*           placeholder="Building number"*/}
+                            {/*           // name="building_number"*/}
+                            {/*           ref={register({*/}
+                            {/*               required: "Building number is required",*/}
+                            {/*               pattern: {*/}
+                            {/*                   value: /^([0-9]*[1-9][0-9]*[a-zA-Z]?)$/i,*/}
+                            {/*                   message: "invalid building number"*/}
+                            {/*               }*/}
+                            {/*           })}/>*/}
+                            {/*    {errors.building_number && <p><b>{errors.building_number.message}</b></p>}*/}
+                            {/*</div>*/}
+                            {/*<div className="input"><p>Date of birth</p>*/}
+                            {/*    <input type="date"*/}
+                            {/*           className="input-field DOB-input"*/}
+                            {/*           // name="date_of_birth"*/}
+                            {/*           ref={register({required: "Date of birth is required"})}/>*/}
+                            {/*    {errors.date_of_birth && <p><b>{errors.date_of_birth.message}</b></p>}*/}
+                            {/*</div>*/}
                             <div className="input">
                                 <p>Email</p>
                                 <input type="email"
@@ -114,20 +123,20 @@ function SignUp() {
                                        })}/>
                                 {errors.email && <p><b>{errors.email.message}</b></p>}
                             </div>
-                            <div className="input">
-                                <p>Apartment number</p>
-                                <input type="text"
-                                       className="input-field address-input"
-                                       placeholder="Apartment number"
-                                       name="apartment_number"
-                                       ref={register({
-                                           pattern: {
-                                               value: /^([0-9]*[1-9][0-9]*[a-zA-Z]?)$/i,
-                                               message: "invalid apartment number"
-                                           }
-                                       })}/>
-                                {errors.apartment_number && <p><b>{errors.apartment_number.message}</b></p>}
-                            </div>
+                            {/*// <div className="input">*/}
+                            {/*    <p>Apartment number</p>*/}
+                            {/*    <input type="text"*/}
+                            {/*           className="input-field address-input"*/}
+                            {/*           placeholder="Apartment number"*/}
+                            {/*           // name="apartment_number"*/}
+                            {/*           ref={register({*/}
+                            {/*               pattern: {*/}
+                            {/*                   value: /^([0-9]*[1-9][0-9]*[a-zA-Z]?)$/i,*/}
+                            {/*                   message: "invalid apartment number"*/}
+                            {/*               }*/}
+                            {/*           })}/>*/}
+                            {/*    {errors.apartment_number && <p><b>{errors.apartment_number.message}</b></p>}*/}
+                            {/*</div>*/}
                             <div className="input">
                                 <p>Password</p>
                                 <input type="password"
@@ -148,7 +157,7 @@ function SignUp() {
                                 <input type="tel"
                                        className="input-field phone-input"
                                        placeholder="Phone number"
-                                       name="phone_number"
+                                       name="phoneNumber"
                                        ref={register({
                                            required: "Phone number is required",
                                            pattern: {
