@@ -33,10 +33,11 @@ function EditItem(id) {
         setItems(category);
     }
     const fetchUserAddress = async (itemId) => {
-        const response = await fetch(`http://localhost:8080/renters/find-by/item/${itemId}`,
+        const response = await fetch(`http://localhost:8080/users/address/item/${itemId}`,
             {
                 method: 'GET',
                 credentials: 'include',
+
 
             });
         const address = await response.json();
