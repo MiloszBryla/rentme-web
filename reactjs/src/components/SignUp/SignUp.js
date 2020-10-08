@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, {useRef, useState} from "react";
 import {useForm} from "react-hook-form";
 import "../../css/header-and-body.css";
 import "../../css/sign-up.css";
@@ -7,25 +7,27 @@ import HeaderWithLogo from "../Header/HeaderWithLogo";
 
 function SignUp() {
     const {register, handleSubmit, errors, getValues} = useForm({});
+    const [lat, setLat] = useState([]);
+    const [lng, setLng] = useState([]);
 
     const onSubmit = async (data) => {
         const headers = new Headers();
         headers.append('Content-type', 'application/json');
         getCoordinates(data)
-        console.log(data)
-        data.is_admin = false;
         data.enabled = 0;
         data.role = "USER";
+        data.isAdmin = false;
+        data.lat = lat;
+        data.lng = lng;
+        console.log(data)
         const request = new Request('http://localhost:8080/users',
             {
                 method: 'POST',
                 headers,
                 body: JSON.stringify(data)
-
             });
         const response = await fetch(request);
         const status = await response.status;
-
     }
 
     function getCoordinates(data) {
@@ -33,14 +35,12 @@ function SignUp() {
         fetch(apiUrl)
             .then(response => response.json())
             .then(response => {
-                data.lat = response.results[0].geometry.lat;
-                data.lng = response.results[0].geometry.lng;
+              setLat(response.results[0].geometry.lat);
+              setLng(response.results[0].geometry.lng);
             })
     }
 
-
     return (
-
         <React.Fragment>
             <HeaderWithLogo/>
             <Login/>
