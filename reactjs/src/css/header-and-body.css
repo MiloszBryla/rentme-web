@@ -51,7 +51,8 @@ body {
 
 .menu ul {
     list-style: none;
-    margin: 0;
+    margin-top: 10px;
+    align-items: center;
 }
 
 .menu ul li {
@@ -97,6 +98,20 @@ input:focus, textarea {
 
 button:focus, textarea {
     outline: none !important;
+}
+
+.header-user-icon{
+    width: 50px;
+    height: 50px;
+    float: right;
+    margin-left: -15px;
+    transform: translateY(-35%);
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+.header-user-icon:hover{
+    opacity: 0.7;
+    transition-duration: 0.5s;
 }
 
 /*-----header with searchbar-----*/

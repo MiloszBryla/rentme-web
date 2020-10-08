@@ -1,34 +1,43 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import "../../../css/header-and-body.css";
+import jwt_decode from "jwt-decode";
 import Cookies from "js-cookie";
-import jwt_decode from 'jwt-decode';
+import TemplateProfileImage from "./templateProfileImage.svg"
+import DropDownMenu from "../../DropDownMenu/DropDownMenu"
 
 function Menu() {
 
     const [email, setEmail] = useState([]);
-    const [user, setUser] = useState([]);
 
-    const fetchUserDetails = async (email) => {
-        console.log("email from fetchUserDetails:")
-        console.log(email)
+    const fetchUserEmail = () => {
+        if (Cookies.get("Authorization") !== undefined){
+            const token = Cookies.get("Authorization");
+            const decodedToken = jwt_decode(token);
+            setEmail(decodedToken.sub);
+        }
     }
 
-    useEffect(() => {
-        const token = Cookies.get("Authorization");
-        if (token != null){
-            const decoded = jwt_decode(token);
-            fetchUserDetails(decoded.sub);
-        }
-    }, []);
+    useEffect(() => { fetchUserEmail(); }, []);
 
-    return (
-        <div className="menu">
+  function toggleDropDownMenu() {
+    const dropDownMenu = document.querySelector(".drop-down-menu");
+
+    if (dropDownMenu.style.display == "none"){
+        dropDownMenu.style.display = "block";
+        }
+    else {
+        dropDownMenu.style.display = "none";
+    }
+}
+
+    if (email.length === 0){
+        return (
+          <div className="menu">
             <ul>
                 <li>
                     <Link to="/about">About</Link>
                 </li>
-
                 <li>
                     <Link to="/signup">
                         <button type="text">Sign up</button>
@@ -39,63 +48,86 @@ function Menu() {
                     <button onClick={showLogin}>Sign in</button>
                 </li>
             </ul>
-        </div>
-    );
+          </div>
+        );
+    }
+    else if (email.length > 0){
+        return (
+          <div className="menu">
+            <ul>
+                <li>
+                    <Link to="/about">About</Link>
+                </li>
+                <li>
+                    <Link to="/dashboard/account">
+                        <span>{email}</span>
 
-    function showLogin() {
-        // fadeOut("wrapper", 15)
-        document.querySelector(".wrapper").style.display = "none";
-        document.querySelector(".popup").style.display = "flex";
-        fadeIn("popup", 35)
+                    </Link>
+                </li>
+                <img className="header-user-icon" src={TemplateProfileImage} onClick={toggleDropDownMenu} />
+                <DropDownMenu email={email}/>
+            </ul>
+
+          </div>
+        );
     }
 
-    function forgotPass() {
-        document.getElementById("forg").addEventListener("click", function () {
-            document.querySelector(".wrapper").style.opacity = "0";
-            document.querySelector(".popup").style.display = "none";
-            document.querySelector(".popup2").style.display = "flex";
-        })
-    }
 
-    function forgotPassHide() {
-        document.querySelector(".close2").addEventListener("click", function () {
-            document.querySelector(".wrapper").style.display = "flex";
-            fadeIn("wrapper", 75)
-            document.querySelector(".popup").style.display = "none";
-            document.querySelector(".popup2").style.display = "none";
 
-        })
-    }
+  function showLogin() {
+    // fadeOut("wrapper", 15)
+    document.querySelector(".wrapper").style.display = "none";
+    document.querySelector(".popup").style.display = "flex";
+    fadeIn("popup", 35)
+}
 
-    function fadeOut(element, duration) {
-        var i = 10;
-        var wrapper = document.getElementsByClassName(element)[0];
-        wrapper.style.opacity = 1;
-        var k = window.setInterval(function () {
-            if (i <= 0) {
-                clearInterval(k)
-                wrapper.style.opacity = 0;
-            } else {
-                wrapper.style.opacity = i / 10;
-                i--;
-            }
-        }, duration);
-    }
+function forgotPass() {
+    document.getElementById("forg").addEventListener("click", function () {
+        document.querySelector(".wrapper").style.opacity = "0";
+        document.querySelector(".popup").style.display = "none";
+        document.querySelector(".popup2").style.display = "flex";
+    })
+}
 
-    function fadeIn(element, duration) {
-        var i = 0;
-        var wrapper = document.getElementsByClassName(element)[0];
-        wrapper.style.opacity = 0;
-        var k = window.setInterval(function () {
-            if (i >= 10) {
-                clearInterval(k)
-                wrapper.style.opacity = 1;
-            } else {
-                wrapper.style.opacity = i / 10;
-                i++;
-            }
-        }, duration);
-    }
+function forgotPassHide() {
+    document.querySelector(".close2").addEventListener("click", function () {
+        document.querySelector(".wrapper").style.display = "flex";
+        fadeIn("wrapper", 75)
+        document.querySelector(".popup").style.display = "none";
+        document.querySelector(".popup2").style.display = "none";
+
+    })
+}
+
+function fadeOut(element, duration) {
+    var i = 10;
+    var wrapper = document.getElementsByClassName(element)[0];
+    wrapper.style.opacity = 1;
+    var k = window.setInterval(function () {
+        if (i <= 0) {
+            clearInterval(k)
+            wrapper.style.opacity = 0;
+        } else {
+            wrapper.style.opacity = i / 10;
+            i--;
+        }
+    }, duration);
+}
+
+function fadeIn(element, duration) {
+    var i = 0;
+    var wrapper = document.getElementsByClassName(element)[0];
+    wrapper.style.opacity = 0;
+    var k = window.setInterval(function () {
+        if (i >= 10) {
+            clearInterval(k)
+            wrapper.style.opacity = 1;
+        } else {
+            wrapper.style.opacity = i / 10;
+            i++;
+        }
+    }, duration);
+}
 
 }
 
