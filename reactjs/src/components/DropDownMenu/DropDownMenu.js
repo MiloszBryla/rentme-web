@@ -15,8 +15,13 @@ function DropDownMenu(props) {
         history.go(0);
     }
 
+    function hideDropDownMenu() {
+        console.log(document.querySelector(".drop-down-menu").style.display);
+        document.querySelector(".drop-down-menu").style.display = "none";
+    }
+
     return (
-        <div className="drop-down-menu">
+        <div className="drop-down-menu" onLoad={hideDropDownMenu}>
             <div className="drop-down-header">
                 <div className="user-image">
                     <img id="logo" alt="user-icon" src={userImg}/>

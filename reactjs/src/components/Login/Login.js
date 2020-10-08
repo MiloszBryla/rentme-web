@@ -22,6 +22,7 @@ function Login() {
             credentials: 'include',
             body: JSON.stringify(data),
         });
+
         history.go(0);
     }
 
