@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "../../css/header-and-body.css";
 import closeIcon from "../../assets/close-window.svg"
 import RecoverAcc from "../RecoverAcc/RecoverAcc";
@@ -8,6 +8,7 @@ import {useHistory} from "react-router-dom";
 
 function Login() {
     const history = useHistory();
+    const [error, setError] = useState([]);
 
     const authoriseUser = async (data) => {
         await fetch('http://localhost:8080/login', {
@@ -19,8 +20,11 @@ function Login() {
             credentials: 'include',
             body: JSON.stringify(data),
         }).then((response) => {
-            console.log("asifjdslfjidoisjfgpdf");
-            console.log(response);
+            if(response.status === 200){
+                history.go(0);
+            } else{
+                setError("Wrong email/password, try again!");
+            }
         })
     }
 
@@ -68,6 +72,7 @@ function Login() {
                     <div className="popup-content">
                         <p className="popup-title sign-in">Sign in</p>
                         <img className="close" src={closeIcon} onClick={hideLogin} alt={"close-icon"}/>
+                        <div className="error-login">{error}</div>
                         <p className="input-label email">E-mail:</p>
                         <div className="login-data-input-decoration-wrapper">
                             <input className="login-data-input" type="text" placeholder="" name="email" ref={register({
