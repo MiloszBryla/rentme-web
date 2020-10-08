@@ -1,28 +1,78 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import "../../../css/header-and-body.css";
+import jwt_decode from "jwt-decode";
+import Cookies from "js-cookie";
+import TemplateProfileImage from "./templateProfileImage.svg"
+import DropDownMenu from "../../DropDownMenu/DropDownMenu"
 
 function Menu() {
 
-  return (
-    <div className="menu">
-      <ul>
-          <li>
-              <Link to="/about">About</Link>
-          </li>
+    const [email, setEmail] = useState([]);
 
-          <li>
-              <Link to="/signup">
-                  <button type="text">Sign up</button>
-              </Link>
-          </li>
+    const fetchUserEmail = () => {
+        if (Cookies.get("Authorization") !== undefined){
+            const token = Cookies.get("Authorization");
+            const decodedToken = jwt_decode(token);
+            setEmail(decodedToken.sub);
+        }
+    }
 
-          <li>
-              <button onClick={showLogin}>Sign in</button>
-          </li>
-      </ul>
-    </div>
-  );
+    useEffect(() => { fetchUserEmail(); }, []);
+
+  function toggleDropDownMenu() {
+    const dropDownMenu = document.querySelector(".drop-down-menu");
+
+    if (dropDownMenu.style.display == "none"){
+        dropDownMenu.style.display = "block";
+        }
+    else {
+        dropDownMenu.style.display = "none";
+    }
+}
+
+    if (email.length === 0){
+        return (
+          <div className="menu">
+            <ul>
+                <li>
+                    <Link to="/about">About</Link>
+                </li>
+                <li>
+                    <Link to="/signup">
+                        <button type="text">Sign up</button>
+                    </Link>
+                </li>
+
+                <li>
+                    <button onClick={showLogin}>Sign in</button>
+                </li>
+            </ul>
+          </div>
+        );
+    }
+    else if (email.length > 0){
+        return (
+          <div className="menu">
+            <ul>
+                <li>
+                    <Link to="/about">About</Link>
+                </li>
+                <li>
+                    <Link to="/dashboard/account">
+                        <span>{email}</span>
+
+                    </Link>
+                </li>
+                <img className="header-user-icon" src={TemplateProfileImage} onClick={toggleDropDownMenu} />
+                <DropDownMenu email={email}/>
+            </ul>
+
+          </div>
+        );
+    }
+
+
 
   function showLogin() {
     // fadeOut("wrapper", 15)

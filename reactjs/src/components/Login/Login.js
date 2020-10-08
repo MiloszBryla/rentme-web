@@ -22,7 +22,7 @@ function Login() {
             credentials: 'include',
             body: JSON.stringify(data),
         });
-        history.push("/dashboard/1");
+        history.go(0);
     }
 
 
