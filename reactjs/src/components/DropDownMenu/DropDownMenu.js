@@ -29,9 +29,9 @@ function DropDownMenu(props) {
                 <div className="drop-down-user-name">{props.email}</div>
             </div>
             <ul>
-                <li><Link to='account' className="drop-down-link">My Account</Link></li>
-                <li><Link to='items' className="drop-down-link">My Items</Link></li>
-                <li><Link to='reservations' className="drop-down-link">My Reservations</Link></li>
+                <li><Link className="drop-down-link" to="/dashboard/account">My Account</Link></li>
+                <li><Link className="drop-down-link" to="/dashboard/lending">My Items</Link></li>
+                <li><Link className="drop-down-link" to="/dashboard/renting" >My Reservations</Link></li>
                 <li><Link to='/' className="drop-down-link" onClick={logOut}>Log out</Link></li>
             </ul>
         </div>
