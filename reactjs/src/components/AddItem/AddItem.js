@@ -3,8 +3,25 @@ import {useForm} from "react-hook-form";
 import "../../css/edit-item.css"
 import "../../css/add-item.css"
 import "../../css/header-and-body.css"
+import Cookies from "js-cookie";
+import jwt_decode from "jwt-decode";
+import {useHistory} from "react-router-dom";
+import { Redirect } from 'react-router-dom'
 
 function AddItem() {
+    const history = useHistory();
+
+    const fetchUserEmail = async () => {
+        if (Cookies.get("Authorization") === undefined) {
+            history.push("/index");
+        }
+    }
+
+    useEffect(() => {
+        fetchUserEmail();
+
+    }, []);
+
 
     useEffect(() => { fetchCategories(); }, []);
 
@@ -63,9 +80,8 @@ function AddItem() {
                 <h4>What's your item?</h4>
                 <input className="add-item-item-name" placeholder="Item name" name="name" ref={register({required: true, minLength: 3})}/>
                 {errors.name && <p className="error-message">Item name is too short!</p>}
-            <p><br/> puki dodawanie obrazków nie działa to trzeba podać url bo w bazie jest not null: </p>
-            <input className="add-item-item-name" placeholder="photo src" name="picUrl" ref={register({required: true, minLength: 3})}/>
-                {errors.picUrl && <p className="error-message">url too short</p>}
+            <br/>
+
 
                 <div id="input-image">
                     <a><img id="icon" src={require('../../assets/icon-with-mountain.svg')}/></a>
@@ -79,7 +95,7 @@ function AddItem() {
                         <option value={element.id}>{element.description}</option>
                     ))} </select>
 
-                <p><br/>trzeba wybrać usera puki nie mamy sesji:</p>
+                <p><br/>trzeba wybrać usera  nie mamy sesji:</p>
                 <select className="type-selector" id="quest-type" name="owner.id" ref={register}>
                     <option value="" selected disabled hidden>Choose...</option>
                     {owners.map(element => (

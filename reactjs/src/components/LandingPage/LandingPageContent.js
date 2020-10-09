@@ -1,5 +1,4 @@
-import React, {useState} from "react";
-import {useLocation, useHistory} from "react-router";
+import React, {useEffect, useState} from "react";
 import {NavLink} from "react-router-dom";
 import "../../css/header-and-body.css";
 import "../../css/index.css";
@@ -12,10 +11,21 @@ import scooterJpg from "../../assets/scooter.jpg"
 import instrumentsJpg from "../../assets/instruments.png"
 import Header from "../Header/Header"
 import {Link} from "react-router-dom";
+import Notifications from "./index";
+import styled from 'styled-components';
+import Cookies from "js-cookie";
+import {useHistory} from "react-router-dom";
+
+
+
+const Container = styled.div`
+    
+    `;
 
 function LandingPageContent() {
 
     const history = useHistory();
+
 
     let [phrase, setPhrase] = useState();
 
@@ -50,16 +60,17 @@ function LandingPageContent() {
                         <input type="text" id="search-field"
                         onChange={handleChange}
                         placeholder="browse items..."/>
+
                     </form>
                     <p className="or">or</p>
+
                     <Link to="/item">
                         <button id="list-item-button">LIST ITEM</button>
                     </Link>
-
-
-
                 </div>
+                <Container><Notifications /></Container>
             </div>
+
 
             <div id="see-categories-sign" onLoad={animateArrows}>
                 <a href="#categories-area"><p id="see-categories">see categories</p>

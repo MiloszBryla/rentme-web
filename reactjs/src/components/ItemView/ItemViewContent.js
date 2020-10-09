@@ -3,13 +3,13 @@ import {useForm} from "react-hook-form";
 import Geocode from "react-geocode";
 import "../../css/item-view.css";
 import "../../css/header-and-body.css"
-
 import {Link} from "react-router-dom";
-
 import ItemViewMap from "../Map/ItemViewMap"
-
+import Cookies from "js-cookie";
+import {useHistory} from "react-router-dom";
 
 function ItemViewContent(id) {
+    const history = useHistory();
 
     let itemLinkToPay = "/pay/item/" + id.value;
 
@@ -34,6 +34,18 @@ function ItemViewContent(id) {
         setItem(item);
         console.log(user);
     }
+    function handleClick() {
+
+        if (Cookies.get("Authorization") === undefined) {
+            console.log("DOTARLO")
+            history.push("/item/view/${itemId}");
+        }else {
+            history.push(itemLinkToPay)
+        }
+
+    }
+
+
     // google api key needed below
 //    Geocode.setApiKey("");
 //    Geocode.fromAddress(user.address + ", " + user.city).then(
@@ -110,7 +122,7 @@ function ItemViewContent(id) {
                         <p className="item-normal-text">{item.description}</p>
                     </div>
                     <div>
-                       <Link to={itemLinkToPay}><button className="button book-now" type="submit">Rent Me!</button></Link>
+                       <button className="button book-now" type="submit" onClick={handleClick}>Rent Me!</button>
                     </div>
                 </div>
                     <p className="item-heading-2 item-location">Location</p>

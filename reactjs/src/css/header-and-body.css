@@ -40,8 +40,8 @@ body {
 }
 
 #logo {
-    height: 28px;
-    max-width: 15cm;
+    height: 20px;
+    max-width: 10cm;
 }
 
 .menu {
@@ -429,4 +429,8 @@ a {
 
 .error-login{
     color: red;
+}
+
+.menu-active{
+    position: fixed;
 }

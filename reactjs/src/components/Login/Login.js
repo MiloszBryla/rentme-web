@@ -21,6 +21,7 @@ function Login() {
             body: JSON.stringify(data),
         }).then((response) => {
             if(response.status === 200){
+                console.log(response)
                 history.go(0);
             } else{
                 setError("Wrong email/password, try again!");
