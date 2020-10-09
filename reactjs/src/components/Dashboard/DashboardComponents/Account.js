@@ -4,19 +4,26 @@ import {useForm} from "react-hook-form";
 import "../../../css/header-and-body.css";
 import "../../../css/account-settings.css";
 import TemplateProfileImage from "./templateProfileImage.svg"
+import jwt_decode from "jwt-decode";
+import Cookies from "js-cookie";
 
-function Account(props) {
+function Account() {
 
     const {register, handleSubmit, errors} = useForm();
     const [user, setUser] = useState([]);
 
     const fetchUserDetails = async () => {
-        const response = await fetch(`http://localhost:8080/users/renters/${props.userId}`, {
-            method: 'GET',
-            credentials: 'include',
-        })
-        const user = await response.json();
-        setUser(user);
+        if (Cookies.get("Authorization") !== undefined) {
+            const token = Cookies.get("Authorization");
+            const decodedToken = jwt_decode(token);
+            const response = await fetch(`http://localhost:8080/users/renters?email=${decodedToken.sub}`, {
+                method: 'GET',
+                credentials: 'include',
+            })
+            const user = await response.json();
+            console.log(user);
+            setUser(user);
+        }
     }
 
     useEffect(() => {
@@ -44,9 +51,9 @@ function Account(props) {
         <div>
             <div className="dashboard">
                 <div className="dashboard-header">
-                    <Link className="bookmark" to={"/" + "dashboard/" + user.id + "/renting"}>Renting</Link>
-                    <Link className="bookmark" to={"/" + "dashboard/" + user.id + "/lending"}>Lending</Link>
-                    <Link className="active-bookmark" to={"/" + "dashboard/" + user.id + "/account"}>Account</Link>
+                    <Link className="bookmark" to="/dashboard/renting">Renting</Link>
+                    <Link className="bookmark" to="/dashboard/lending">Lending</Link>
+                    <Link className="active-bookmark" to="/dashboard/account">Account</Link>
                 </div>
                 <div className="dashboard-content-container acc-account">
                     <h7>Account settings</h7>

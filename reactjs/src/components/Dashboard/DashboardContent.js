@@ -40,23 +40,10 @@ function DashboardContent(id){
     return (
         <Router>
             <Switch>
-                <Route path={"/" + "dashboard/" + userId + "/renting"}
-                       render={(props) => (
-                    <Renting {...props} userId={userId} />
-                    )}/>
-                <Route path={"/" + "dashboard/" + userId + "/lending"}
-                       render={(props) => (
-                           <Lending {...props} userId={userId} />
-                       )}/>
-                <Route path={"/" + "dashboard/" + userId + "/account"}
-                       render={(props) => (
-                    <Account {...props} userId={userId} />
-                )}/>
-                <Route path={"/" + "dashboard/" + userId }
-                       render={(props) => (
-                           <Renting {...props} userId={userId} />
-                       )}/>
-
+                <Route path="/dashboard/renting" component={Renting} />
+                <Route path="/dashboard/lending" component={Lending} />
+                <Route path="/dashboard/account" component={Account} />
+                <Route path="/dashboard/" component={Renting} />
             </Switch>
         </Router>
     );
