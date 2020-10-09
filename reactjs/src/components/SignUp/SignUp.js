@@ -4,11 +4,12 @@ import "../../css/header-and-body.css";
 import "../../css/sign-up.css";
 import Login from "../Login/Login";
 import HeaderWithLogo from "../Header/HeaderWithLogo";
+import {useHistory} from "react-router-dom";
 
 function SignUp() {
-    const {register, handleSubmit, errors, getValues} = useForm({});
-    const [lat, setLat] = useState([]);
-    const [lng, setLng] = useState([]);
+    const {register, handleSubmit, errors, getValues} = useForm();
+    const history = useHistory();
+    const [error, setError] = useState([]);
 
     const onSubmit = async (data) => {
         const headers = new Headers();
@@ -17,8 +18,6 @@ function SignUp() {
         data.enabled = 0;
         data.role = "USER";
         data.isAdmin = false;
-        data.lat = lat;
-        data.lng = lng;
         console.log(data)
         const request = new Request('http://localhost:8080/users',
             {
@@ -26,17 +25,23 @@ function SignUp() {
                 headers,
                 body: JSON.stringify(data)
             });
-        const response = await fetch(request);
-        const status = await response.status;
+        const response = await fetch(request).then((response => {
+            if (response.status === 200) {
+                history.go(0)
+            } else {
+                setError("Email is already taken!");
+            }
+        }));
     }
+
 
     function getCoordinates(data) {
         let apiUrl = "https://api.opencagedata.com/geocode/v1/json?q=Slusarska%2C%20Krakow&key=62619016a8b448b290c76150ccc9893d&language=pl&pretty=1";
         fetch(apiUrl)
             .then(response => response.json())
             .then(response => {
-              setLat(response.results[0].geometry.lat);
-              setLng(response.results[0].geometry.lng);
+                data.lat = response.results[0].geometry.lat;
+                data.lng = response.results[0].geometry.lng;
             })
     }
 
@@ -87,27 +92,6 @@ function SignUp() {
                                        ref={register({required: "Last name is required"})}/>
                                 {errors.last_name && <p><b>{errors.last_name.message}</b></p>}
                             </div>
-                            {/*// <div className="input"><p>Building number</p>*/}
-                            {/*    <input type="text"*/}
-                            {/*           className="input-field address-input"*/}
-                            {/*           placeholder="Building number"*/}
-                            {/*           // name="building_number"*/}
-                            {/*           ref={register({*/}
-                            {/*               required: "Building number is required",*/}
-                            {/*               pattern: {*/}
-                            {/*                   value: /^([0-9]*[1-9][0-9]*[a-zA-Z]?)$/i,*/}
-                            {/*                   message: "invalid building number"*/}
-                            {/*               }*/}
-                            {/*           })}/>*/}
-                            {/*    {errors.building_number && <p><b>{errors.building_number.message}</b></p>}*/}
-                            {/*</div>*/}
-                            {/*<div className="input"><p>Date of birth</p>*/}
-                            {/*    <input type="date"*/}
-                            {/*           className="input-field DOB-input"*/}
-                            {/*           // name="date_of_birth"*/}
-                            {/*           ref={register({required: "Date of birth is required"})}/>*/}
-                            {/*    {errors.date_of_birth && <p><b>{errors.date_of_birth.message}</b></p>}*/}
-                            {/*</div>*/}
                             <div className="input">
                                 <p>Email</p>
                                 <input type="email"
@@ -121,22 +105,9 @@ function SignUp() {
                                                message: "invalid email address"
                                            }
                                        })}/>
-                                {errors.email && <p><b>{errors.email.message}</b></p>}
+                                {error.email && <p><b>{error.email.message}</b></p>}
+                                <div className="error-email">{error}</div>
                             </div>
-                            {/*// <div className="input">*/}
-                            {/*    <p>Apartment number</p>*/}
-                            {/*    <input type="text"*/}
-                            {/*           className="input-field address-input"*/}
-                            {/*           placeholder="Apartment number"*/}
-                            {/*           // name="apartment_number"*/}
-                            {/*           ref={register({*/}
-                            {/*               pattern: {*/}
-                            {/*                   value: /^([0-9]*[1-9][0-9]*[a-zA-Z]?)$/i,*/}
-                            {/*                   message: "invalid apartment number"*/}
-                            {/*               }*/}
-                            {/*           })}/>*/}
-                            {/*    {errors.apartment_number && <p><b>{errors.apartment_number.message}</b></p>}*/}
-                            {/*</div>*/}
                             <div className="input">
                                 <p>Password</p>
                                 <input type="password"
