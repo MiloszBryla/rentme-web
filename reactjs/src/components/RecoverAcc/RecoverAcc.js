@@ -35,31 +35,33 @@ function RecoverAcc() {
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="popup2">
-                <div className="popup-content2">
-                    <p className="popup-title">Password Recovery</p>
-                    <img className="close2" onClick={forgotPassHide} src={closeIcon}/>
-                    <p>If you have forgotten your account password please enter your e-mail. 
-                        We will send you password recovery link.</p>
-                    <p className="input-label">E-mail:</p>
-                    <div className="login-data-input-decoration-wrapper">
-                        <input className="login-data-input" type="text" placeholder="" name="email"
-                            ref={register({
-                                required: "Required",
-                                pattern: {
-                                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                    message: "invalid email address"
-                                }
-                            })}/>
-                    </div>
-                    {errors.email && <p className="login-validator-message">You need to enter valid email address.</p>}
-                    <div className="login-button-gradient-wrapper rec">
-                        <button className="loginRecBtn rec"> Send</button>
+        <div className={"wrapper"}>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="popup2">
+                    <div className="popup-content2">
+                        <p className="popup-title">Password Recovery</p>
+                        <img className="close2" onClick={forgotPassHide} src={closeIcon}/>
+                        <p>If you have forgotten your account password please enter your e-mail.
+                            We will send you password recovery link.</p>
+                        <p className="input-label">E-mail:</p>
+                        <div className="login-data-input-decoration-wrapper">
+                            <input className="login-data-input" type="text" placeholder="" name="email"
+                                ref={register({
+                                    required: "Required",
+                                    pattern: {
+                                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                        message: "invalid email address"
+                                    }
+                                })}/>
+                        </div>
+                        {errors.email && <p className="login-validator-message">You need to enter valid email address.</p>}
+                        <div className="login-button-gradient-wrapper rec">
+                            <button className="loginRecBtn rec"> Send</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     );
 }
 

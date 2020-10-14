@@ -15,8 +15,7 @@ import Notifications from "./index";
 import styled from 'styled-components';
 import Cookies from "js-cookie";
 import {useHistory} from "react-router-dom";
-
-
+import RouteAuth from "../RouteProtection/RouteAuth";
 
 const Container = styled.div`
 
@@ -32,6 +31,28 @@ function LandingPageContent() {
     const redirect = () => {
         history.replace("/items-list/" + phrase);
     }
+
+    function authorizeListItemAccess(){
+        if (RouteAuth.isAuthenticated()){
+            history.push("/item");
+        }
+        else{
+            lightUpLoginOptions();
+        }
+    }
+
+    function lightUpLoginOptions(){
+        document.getElementById("account-buttons").animate([
+            {boxShadow: 'none'},
+            {boxShadow: "0px 0px 20px 15px rgba(255,231,0, 1)"},
+            {boxShadow: 'none'},
+            {boxShadow: "0px 0px 20px 15px rgba(255,231,0, 1)"},
+            {boxShadow: 'none'},
+        ], {
+            duration: 1600,
+        })
+    };
+
 
     function handleChange(event) {
         setPhrase(event.target.value);
@@ -63,16 +84,12 @@ function LandingPageContent() {
 
                     </form>
                     <p className="or">or</p>
-
-                    <Link to="/item">
-                        <button id="list-item-button">LIST ITEM</button>
-                    </Link>
+                    <button id="list-item-button" onClick={authorizeListItemAccess}>LIST ITEM</button>
                 </div>
                 <Container><Notifications /></Container>
             </div>
 
-
-            <div id="see-categories-sign" onLoad={animateArrows}>
+            <div id="see-categories-sign" onLoad={animateArrows}  >
                 <a href="#categories-area"><p id="see-categories">see categories</p>
                 <img id="scroll-down-arrows" src={scrollDownArrows}/></a>
             </div>

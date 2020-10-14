@@ -6,7 +6,7 @@ html {
 
 .wrapper{
     opacity: 0;
-    animation: appearSoftly 0.7s forwards;
+    animation: appearSoftly 1s forwards;
 }
 
 @keyframes appearSoftly {
@@ -69,12 +69,13 @@ body {
 
 .menu ul li button {
     color: white;
-    font-size: inherit;
+    font-size: 16px;
     background: none;
-    padding: 0.7vh 1vw;
-    border-radius: 10px;
+    padding: 0 10px;
+    height: 32px;
+    border-radius: 9px;
     border: 1px solid white;
-    margin-left: 1vw;
+    margin-left: 10px;
     transition-duration: 0.5s;
 }
 
