@@ -19,7 +19,7 @@ import {useHistory} from "react-router-dom";
 
 
 const Container = styled.div`
-    
+
     `;
 
 function LandingPageContent() {

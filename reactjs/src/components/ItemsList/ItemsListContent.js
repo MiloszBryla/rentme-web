@@ -46,7 +46,6 @@ function ItemsListContent(searchPhrase){
 
     return (
         <React.Fragment>
-                <HeaderWithLogoAndSearchBar SearchPhrasePassedToHeader={searchPhraseContent}/>
                 <div id="items-area" >
                     <SortingOptions/>
                     <div className="items-list">

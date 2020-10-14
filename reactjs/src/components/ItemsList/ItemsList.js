@@ -11,7 +11,7 @@ function ItemsList({match}) {
         <div >
             <Login />
             <div className="wrapper">
-                <HeaderWithLogoAndSearchBar/>
+                <HeaderWithLogoAndSearchBar SearchPhrasePassedToHeader={searchPhrase}/>
                 <ItemsListContent phrase={searchPhrase}/>
             </div>
         </div>

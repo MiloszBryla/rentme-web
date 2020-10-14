@@ -20,16 +20,16 @@ function Menu() {
 
     useEffect(() => {
         fetchUserEmail();
-
     }, []);
 
-
-
     function toggleDropDownMenu() {
+        console.log("profile clicked");
+        console.log(document.querySelector(".drop-down-menu").style);
         const dropDownMenuStyle = document.querySelector(".drop-down-menu").style;
+        console.log(dropDownMenuStyle);
 
         if (dropDownMenuStyle.display === "none") {
-            dropDownMenuStyle.display = "block";
+            dropDownMenuStyle.display = "flex";
         } else {
             dropDownMenuStyle.display = "none";
         }

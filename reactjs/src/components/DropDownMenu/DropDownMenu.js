@@ -16,7 +16,6 @@ function DropDownMenu(props) {
     }
 
     function hideDropDownMenu() {
-        console.log(document.querySelector(".drop-down-menu").style.display);
         document.querySelector(".drop-down-menu").style.display = "none";
     }
 
@@ -24,7 +23,7 @@ function DropDownMenu(props) {
         <div className="drop-down-menu" onLoad={hideDropDownMenu}>
             <div className="drop-down-header">
                 <div className="user-image">
-                    <img id="logo" alt="user-icon" src={userImg}/>
+                    <img id="profile-icon" alt="user-icon" src={userImg}/>
                 </div>
                 <div className="drop-down-user-name">{props.email}</div>
             </div>

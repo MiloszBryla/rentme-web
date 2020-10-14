@@ -36,12 +36,11 @@ body {
     background-size: cover;
     border-bottom: 0px solid rgba(255, 255, 255, 0.1);
     top: 0px;
-    z-index: 2;
+    z-index: 1;
 }
 
 #logo {
-    height: 20px;
-    max-width: 10cm;
+    height: 36px;
 }
 
 .menu {
