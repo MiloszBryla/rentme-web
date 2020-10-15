@@ -6,7 +6,6 @@ import "../../css/header-and-body.css";
 import RecoverAcc from "../RecoverAcc/RecoverAcc";
 import {useForm} from "react-hook-form";
 import {useHistory} from "react-router-dom";
-import RouteAuth from "../RouteProtection/RouteAuth";
 
 function LoginPage() {
 

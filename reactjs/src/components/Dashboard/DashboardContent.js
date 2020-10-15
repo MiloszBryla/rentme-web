@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import "../../css/header-and-body.css";
 import "../../css/dashboard.css";
-import TemplateItemImage from "./templateItemImage.jpg"
 import {
     BrowserRouter as Router,
     Switch,
@@ -9,7 +8,6 @@ import {
     Redirect,
     Link,
 } from "react-router-dom";
-import PaymentCont from "../Payment/PaymentsCont";
 import Renting from "./DashboardComponents/Renting"
 import Lending from "./DashboardComponents/Lending"
 import Account from "./DashboardComponents/Account"

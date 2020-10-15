@@ -10,12 +10,11 @@ import adventureJpg from "../../assets/adventure.jpg"
 import scooterJpg from "../../assets/scooter.jpg"
 import instrumentsJpg from "../../assets/instruments.png"
 import Header from "../Header/Header"
-import {Link} from "react-router-dom";
 import Notifications from "./index";
 import styled from 'styled-components';
 import Cookies from "js-cookie";
 import {useHistory} from "react-router-dom";
-import RouteAuth from "../RouteProtection/RouteAuth";
+import jwt_decode from "jwt-decode";
 
 const Container = styled.div`
 
@@ -24,8 +23,6 @@ const Container = styled.div`
 function LandingPageContent() {
 
     const history = useHistory();
-
-
     let [phrase, setPhrase] = useState();
 
     const redirect = () => {
@@ -33,8 +30,13 @@ function LandingPageContent() {
     }
 
     function authorizeListItemAccess(){
-        if (RouteAuth.isAuthenticated()){
-            history.push("/item");
+        let token = Cookies.get("Authorization");
+        if(token !== undefined) {
+            let tokenExpiration = jwt_decode(token).exp;
+            let dateNow = new Date();
+            if (tokenExpiration > dateNow.getTime() / 1000) {
+                history.push("/item");
+            }
         }
         else{
             lightUpLoginOptions();
