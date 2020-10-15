@@ -12,7 +12,7 @@ function Renting(props) {
 
     const {register, errors} = useForm();
     const [user, setUser] = useState([]);
-    const [items, setItems] = useState([]);
+    const [reservations, setReservations] = useState([]);
 
     const fetchDetails = async () => {
         if (Cookies.get("Authorization") !== undefined) {
@@ -26,15 +26,15 @@ function Renting(props) {
             console.log(user);
             setUser(user);
 
-            const itemsResponse = await fetch(`http://localhost:8080/api/items/users/${user.id}`,
+            const reservationsResponse = await fetch(`http://localhost:8080/reservations?ownerId=${user.id}`,
                 {
                     method: 'GET',
                     credentials: 'include',
 
                 });
-            const items = await itemsResponse.json();
-            setItems([]);
-            console.log(items)
+            const reservations = await reservationsResponse.json();
+            setReservations(reservations);
+            console.log(reservations)
         }
     }
 
@@ -53,7 +53,19 @@ function Renting(props) {
                 <div className="dashboard-content-container">
                     <h7>Borrowed Items</h7>
                     <hr/>
-
+                    <div className="dashboard-items-list">
+                        <div className="dashboard-items-list-header">
+                            <p/>
+                            <p className="dashboard-items-list-header-label">Name</p>
+                            <p className="dashboard-items-list-header-label">Status</p>
+                            <p className="dashboard-items-list-header-label">Start of booking</p>
+                            <p className="dashboard-items-list-header-label">Date of return</p>
+                        </div>
+                        {
+                            reservations.map(function(theReservation){return <Item item={theReservation.item}/>;
+                            })
+                        }
+                    </div>
                 </div>
             </div>
         </div>
