@@ -3,7 +3,6 @@ import React, {useState} from 'react';
 import "../../css/header-and-body.css";
 import closeIcon from "../../assets/close-window.svg";
 import "../../css/header-and-body.css";
-import RecoverAcc from "../RecoverAcc/RecoverAcc";
 import {useForm} from "react-hook-form";
 import {useHistory} from "react-router-dom";
 
@@ -24,7 +23,6 @@ function LoginPage() {
         }).then((response) => {
             if(response.status === 200){
                 console.log(response)
-                RouteAuth.login();
                 history.goBack();
             } else{
                 setError("Wrong email/password, try again!");
