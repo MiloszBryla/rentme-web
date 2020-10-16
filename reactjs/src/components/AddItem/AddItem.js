@@ -78,8 +78,8 @@ function AddItem() {
 
             <div className="inputs">
                 <h4>What's your item?</h4>
-                <input className="add-item-item-name" placeholder="Item name" name="name" ref={register({required: true, minLength: 3})}/>
-                {errors.name && <p className="error-message">Item name is too short!</p>}
+                <input className="add-item-item-name" placeholder="OwnedItem name" name="name" ref={register({required: true, minLength: 3})}/>
+                {errors.name && <p className="error-message">OwnedItem name is too short!</p>}
             <br/>
 
 

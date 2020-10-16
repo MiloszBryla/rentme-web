@@ -42,7 +42,7 @@ function LoginPage() {
                 <div className="popup" style={{"display": "flex", "opacity": "1"}}>
                     <div className="popup-content">
                         <p className="popup-title sign-in">Sign in</p>
-                        <img className="close" src={closeIcon} onClick={() => history.goBack()} alt={"close-icon"}/>
+                        <img className="close" src={closeIcon} onClick={() => history.push("/index")} alt={"close-icon"}/>
                         <div className="error-login">{error}</div>
                         <p className="input-label email">E-mail:</p>
                         <div className="login-data-input-decoration-wrapper">

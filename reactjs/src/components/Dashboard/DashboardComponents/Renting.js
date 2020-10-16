@@ -4,7 +4,7 @@ import "../../../css/dashboard.css";
 import TemplateItemImage from "../templateItemImage.jpg"
 import {Link} from "react-router-dom";
 import {useForm} from "react-hook-form";
-import Item from "./Item";
+import BorrowedItem from "./BorrowedItem";
 import Cookies from "js-cookie";
 import jwt_decode from "jwt-decode";
 
@@ -62,7 +62,7 @@ function Renting(props) {
                             <p className="dashboard-items-list-header-label">Date of return</p>
                         </div>
                         {
-                            reservations.map(function(theReservation){return <Item item={theReservation.item}/>;
+                            reservations.map(function(theReservation){return <BorrowedItem reservation={theReservation}/>;
                             })
                         }
                     </div>

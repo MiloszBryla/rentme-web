@@ -4,7 +4,7 @@ import "../../../css/dashboard.css";
 import TemplateItemImage from "../templateItemImage.jpg"
 import {Link} from "react-router-dom";
 import {useForm} from "react-hook-form";
-import Item from "./Item";
+import OwnedItem from "./OwnedItem";
 import Cookies from "js-cookie";
 import jwt_decode from "jwt-decode";
 
@@ -62,7 +62,7 @@ function Lending(props){
                             <p className="dashboard-items-list-header-label">Date of return</p>
                         </div>
                         {
-                            items.map(function(theItem){return <Item item={theItem}/>;
+                            items.map(function(theItem){return <OwnedItem item={theItem}/>;
                             })
                         }
                     </div>

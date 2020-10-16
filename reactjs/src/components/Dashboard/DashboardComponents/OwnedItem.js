@@ -5,7 +5,7 @@ import TemplateItemImage from "../templateItemImage.jpg"
 import {Link} from "react-router-dom";
 import {useForm} from "react-hook-form";
 
-function Item(props){
+function OwnedItem(props){
 
     return (
         <a className="dashboard-item" href="#">
@@ -20,4 +20,4 @@ function Item(props){
     );
 }
 
-export default Item;
+export default OwnedItem;
