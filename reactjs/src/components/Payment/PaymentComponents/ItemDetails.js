@@ -31,7 +31,7 @@ function ItemDetails(id) {
     }
 
     const fetchUserName = async (itemId) => {
-        const response = await fetch(`http://localhost:8080/users/find-by/item/${itemId}`,
+        const response = await fetch(`http://localhost:8080/users?byItemId=${itemId}`,
             {
                 method: 'GET',
                 credentials: 'include',
