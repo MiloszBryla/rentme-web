@@ -1,0 +1,436 @@
+html {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+.wrapper{
+    opacity: 0;
+    animation: appearSoftly 1s forwards;
+}
+
+@keyframes appearSoftly {
+    0%{}
+    100%{opacity: 1}
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    background: url('../assets/background-with-icons.svg');
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: "Roboto";
+    font-size: 15px;
+    color: white;
+}
+
+.header {
+    background: url('../assets/background-with-icons.svg');
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100%;
+    position: fixed;
+    padding: 13px;
+    background-size: cover;
+    border-bottom: 0px solid rgba(255, 255, 255, 0.1);
+    top: 0px;
+    z-index: 1;
+}
+
+#logo {
+    height: 36px;
+}
+
+.menu {
+    float: right;
+    margin-right: 50px;
+}
+
+.menu ul {
+    list-style: none;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.menu ul li {
+    display: inline-block;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: lighter;
+    padding: 0 20px;
+    transition-duration: 0.5s;
+}
+
+.menu ul li button {
+    color: white;
+    font-size: 16px;
+    background: none;
+    padding: 0 10px;
+    height: 32px;
+    border-radius: 9px;
+    border: 1px solid white;
+    margin-left: 10px;
+    transition-duration: 0.5s;
+}
+
+.menu ul li button:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+    border-color: rgba(255, 255, 255, 0.6);
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+
+.menu ul li a:hover {
+    color: rgba(255, 255, 255, 0.6);
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+
+input:focus, textarea {
+    outline: none !important;
+}
+
+button:focus, textarea {
+    outline: none !important;
+}
+
+.header-user-icon{
+    width: 50px;
+    height: 50px;
+    float: right;
+    margin-left: -15px;
+    transform: translateY(-35%);
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+.header-user-icon:hover{
+    opacity: 0.7;
+    transition-duration: 0.5s;
+}
+
+/*-----header with searchbar-----*/
+
+.search-form {
+    margin-top: 15px;
+}
+
+.search-form h4{
+    font-size: 15px;
+    margin: 10px;
+    display:inline;
+    color:white
+}
+
+.item-search-field{
+    padding-left: 10px;
+    border-radius: 6px;
+    border:none;
+    font-size: 15px;
+    height: 36px;
+    width: 20vw;
+    min-width: 200px;
+}
+
+.item-search-field:focus::placeholder{
+    color: transparent;
+}
+
+.distance-inputs{
+    padding-left: 10px;
+    border-radius: 6px;
+    border:none;
+    font-size: 15px;
+    height: 36px;
+    width: 150px;
+}
+
+.distance-inputs:focus::placeholder{
+    color: transparent;
+}
+
+.searchbar-hidden-submit-button{
+    display:none;
+}
+
+.sorting-option-inputs-list{
+    color: white;
+    background: none;
+    border-radius: 10px;
+    border: 1px solid white;
+    font-size: 15px;
+    height: 36px;
+    padding: 0 5px;
+    float: none;
+    width: 100px;
+}
+
+.sorting-option-inputs-list option {
+    text-align: center;
+    align-self: center;
+}
+
+
+.sorting-option-inputs-list:focus, textarea {
+    outline: none !important;
+}
+
+.input-field {
+    height: 30px;
+    width: 250px;
+    background-color: white;
+    font-family: inherit;
+    font-size: 14px;
+    border: white 1px solid;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.warning-email {
+    color: #BF343F;
+    height: 24px;
+    padding: 0 8px;
+    font-size: 18px;
+}
+
+.hidden {
+    display: none;
+}
+
+/*-------END OF HEADER CSS-------*/
+
+/*------- LOGIN AND PASSWORD RECOVERY -------*/
+
+.popup {
+    position: fixed;
+    top: 20%;
+    right:40%;
+    opacity: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color: black;
+
+}
+
+.popup-content {
+    box-sizing: content-box !important;
+    width: 300px;
+    border-radius: 10px;
+    color: black;
+    padding: 30px 20px 20px 20px;
+    background: rgba(255, 255, 255, 1);
+    text-align: center;
+}
+
+.popup-title{
+    font-size: 26px;
+    text-align: center !important;
+}
+
+.popup-title.sign-in{
+    font-size: 32px;
+}
+
+.recoveryPassBtn {
+    float: right;
+    background: none;
+    border: none;
+    text-align: right;
+    margin: 12px 0;
+    font-family: "Roboto";
+    color: black;
+    cursor: pointer;
+}
+
+.input-label{
+    float: left;
+    margin: 40px 0 5px 5px;
+}
+
+.input-label.email{
+    margin-top: 10px;
+}
+
+.login-data-input-decoration-wrapper{
+    justify-self: center;
+    align-self: center;
+/*    border-radius: 10px;*/
+    height: 46px;
+    width: 290px;
+/*    background: linear-gradient(90deg, rgba(255,82,131,1) 0%, rgba(62,45,255,1) 100%);*/
+    text-align: center;
+    overflow: hidden;
+}
+
+.login-data-input {
+    position: relative;
+    top: 2px;
+    margin-top: auto;
+    border: 2px solid rgba(148, 0, 211, 0.5);
+    border-radius: 8px;
+    padding: 5px;
+    height: 42px;
+    width: 286px;
+}
+
+.login-validator-message{
+    text-align: center;
+    position: fixed;
+    margin-top: 5px !important;
+    color: red;
+    font-size: 15px;
+}
+
+.login-data-input2 {
+    position: relative;
+    top: 2px;
+    margin-top: auto;
+    border: none;
+    border-radius: 8px;
+    padding: 5px;
+    height: 36px;
+    width: 276px;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition-duration: 0.5s;
+}
+
+.close:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+    transition-duration: 0.5s;
+}
+
+.close2 {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    height: 20px;
+    border-radius: 50%;
+    transition-duration: 0.5s;
+}
+
+.close2:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+
+.popup2 {
+    position: fixed;
+    top: 20%;
+    right:40%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color: black;
+}
+
+.popup-content2 {
+    box-sizing: content-box !important;
+    width: 300px;
+    border-radius: 10px;
+    color: black;
+    padding: 30px 20px 20px 20px;
+    background: white;
+    text-align: center;
+}
+
+.popup-content2 h3 {
+    margin: auto;
+}
+
+.popup-content2 h4 {
+    display: grid;
+    align-items: end;
+    font: "Roboto";
+}
+
+.popup-content2 p{
+    margin-top: 25px;
+    text-align: left;
+}
+
+.popup-content2 .input-label{
+    margin-top: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.login-button-gradient-wrapper{
+/*    background: linear-gradient(90deg, rgba(255,82,131,1) 0%, rgba(74,72,255,1) 100%);*/
+    height: 44px;
+    width: 120px;
+    margin: 60px auto 0 auto;
+    text-align:center;
+    border-radius: 10px;
+    transition-duration: 0.5s;
+}
+
+.loginRecBtn{
+    position: relative;
+    top: 2px;
+    color:black;
+    text-align:center;
+    letter-spacing: 2px;
+    border: 2px solid rgba(148, 0, 211, 0.3);
+    border-radius: 8px;
+    width: 116px;
+    height: 40px;
+    background: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition-duration: 0.5s;
+}
+/*
+.login-button-gradient-wrapper.rec{
+    width: 124px;
+    margin: 40px auto 0 auto;
+}
+.loginRecBtn.rec{
+    width: 120px;
+}*/
+
+.login-button-gradient-wrapper:hover{
+    color: white;
+    transition-duration: 0.5s;
+}
+
+.loginRecBtn:hover{
+    color: black;
+/*    top: 0;
+    height: 44px;
+    width: 120px;*/
+    background: rgba(148, 0, 211, 0.1);
+    transition-duration: 0.5s;
+    border: 2px solid rgba(148, 0, 211, 0.2);
+}
+
+.loginRecBtn.rec:hover{
+    width: 124px;
+}
+
+
+.error-login{
+    color: red;
+}
+
+.menu-active{
+    position: fixed;
+}
