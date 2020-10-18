@@ -15,7 +15,7 @@ function SignUp() {
         const headers = new Headers();
         headers.append('Content-type', 'application/json');
         getCoordinates(data)
-        data.enabled = 0;
+        data.enabled = 1;
         data.role = "USER";
         data.isAdmin = false;
         console.log(data)
