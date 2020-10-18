@@ -26,7 +26,7 @@ function Lending(props){
             console.log(user);
             setUser(user);
 
-            const itemsResponse = await fetch(`http://localhost:8080/api/items/users/${user.id}`,
+            const itemsResponse = await fetch(`http://localhost:8080/api/items?byOwnerId=${user.id}`,
                 {
                     method: 'GET',
                     credentials: 'include',

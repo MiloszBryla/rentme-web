@@ -12,7 +12,7 @@ function DropDownMenu(props) {
 
     function logOut() {
         Cookies.remove("Authorization");
-        history.go(0);
+        history.push("/index");
     }
 
     function hideDropDownMenu() {
