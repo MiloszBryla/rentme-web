@@ -37,7 +37,7 @@
 }
 
 .acc-input-container{
-    margin-bottom: 30px;
+    margin-bottom: 35px;
 }
 
 .acc-input-label{
@@ -74,5 +74,12 @@
     width: 150px;
     height: 38px;
     grid-column: span 2;
+}
+
+.error-message{
+    position: absolute;
+    margin: 5px 0 0 3px;
+    font-size: 12px;
+    color: red;
 }
 

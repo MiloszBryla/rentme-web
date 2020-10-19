@@ -1,17 +1,18 @@
 import React, {useRef, useState} from "react";
-import {useForm} from "react-hook-form";
+import {useForm, Controller} from "react-hook-form";
 import "../../css/header-and-body.css";
 import "../../css/sign-up.css";
 import Login from "../Login/Login";
 import HeaderWithLogo from "../Header/HeaderWithLogo";
-import {useHistory} from "react-router-dom";
-
+import { useHistory } from "react-router-dom";
 import TemplateProfileImage from "./templateProfileImage.svg"
 
 function SignUp() {
-    const {register, handleSubmit, errors, getValues} = useForm();
+    const {register, handleSubmit, errors, watch} = useForm();
     const history = useHistory();
-    const [error, setError] = useState([]);
+    const [error, setError] = useState("");
+    const password = useRef({});
+    password.current = watch('password');
 
     const onSubmit = async (data) => {
         const headers = new Headers();
@@ -28,8 +29,8 @@ function SignUp() {
                 body: JSON.stringify(data)
             });
         const response = await fetch(request).then((response => {
-            if (response.status === 200) {
-                history.go(0)
+            if (response.status === 201) {
+                authoriseUser(data);
             } else {
                 setError("Email is already taken!");
             }
@@ -45,6 +46,25 @@ function SignUp() {
                 data.lat = response.results[0].geometry.lat;
                 data.lng = response.results[0].geometry.lng;
             })
+    }
+
+    const authoriseUser = async (data) => {
+        await fetch('http://localhost:8080/login', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify(data),
+        }).then((response) => {
+            if(response.status === 200){
+                history.push("/index");
+            }
+            else{
+                history.go(0);
+            }
+        })
     }
 
     return (
@@ -69,29 +89,51 @@ function SignUp() {
                                     <div className="acc-input-container acc-fist-name">
                                         <p className="acc-input-label">First name</p>
                                         <input className="acc-input" name="firstName"
-                                              ref={register({required: "First name is required"})}/>
-                                        {errors.name && <p><b>{errors.name.message}</b></p>}
+                                               ref={register({required: true, minLength: 3})}/>
+                                        {errors.firstName
+                                        && errors.firstName.type === "required"
+                                        && <p className="error-message">This field is required</p>}
+                                        {errors.firstName
+                                        && errors.firstName.type === "minLength"
+                                        && <p className="error-message">Minimum 3 characters required</p>}
                                     </div>
+
                                     <div className="acc-input-container acc-last-name">
                                         <p className="acc-input-label">Last name</p>
-                                        <input className="acc-input" name="lastName"
-                                               ref={register()}/>
-                                        {errors.last_name && <p><b>{errors.last_name.message}</b></p>}
+                                        <input
+                                            className="acc-input"
+                                            name="lastName"
+                                            ref={register({required: true, minLength: 3})}
+                                        />
+                                        {errors.lastName
+                                        && errors.lastName.type === "required"
+                                        && <p className="error-message">This field is required</p>}
+                                        {errors.lastName
+                                        && errors.lastName.type === "minLength"
+                                        && <p className="error-message">Minimum 3 characters required</p>}
                                     </div>
+
                                     <div className="acc-input-container acc-email">
                                         <p className="acc-input-label">E-mail</p>
                                         <input className="acc-input" name="email"
-                                            ref={register({
-                                                required: "Email is required",
-                                                pattern: {
-                                                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                                    message: "invalid email address"
-                                                }
-                                        })}/>
-                                        {error.email && <p><b>{error.email.message}</b></p>}
-                                        <div className="error-email">{error}</div>
+                                               ref={register({
+                                                   required: true,
+                                                   pattern: {
+                                                       value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                                       message: "invalid email address"
+                                                   }
+                                               })}
+                                        />
+                                        {errors.email
+                                        && errors.email.type === "required"
+                                        && <p className="error-message">This field is required</p>}
+                                        {errors.email
+                                        && errors.email.type === "pattern"
+                                        && <p className="error-message">Incorrect email format</p>}
+                                        <div className="error-message">{error}</div>
                                     </div>
                                 </div>
+
                                 <div className="account-settings-section acc-img">
                                     <img src={TemplateProfileImage}/>
                                     <button className="acc-button upload">Upload</button>
@@ -103,20 +145,43 @@ function SignUp() {
                                     <div className="acc-input-container acc-address">
                                         <p className="acc-input-label">Street and number</p>
                                         <input className="acc-input" name="address"
-                                               ref={register()}/>
-                                        {errors.street && <p><b>{errors.street.message}</b></p>}
+                                               ref={register({
+                                                   required: true,
+                                                   minLength: 3
+                                               })}/>
+                                        {errors.address
+                                        && errors.address.type === "required"
+                                        && <p className="error-message">This field is required</p>}
+                                        {errors.address
+                                        && errors.address.type === "minLength"
+                                        && <p className="error-message">Minimum 3 characters required</p>}
                                     </div>
                                     <div className="acc-input-container acc-post-code">
                                         <p className="acc-input-label">Postal code</p>
                                         <input className="acc-input" name="postCode"
-                                               ref={register()}/>
-                                        {errors.postal_code && <p><b>{errors.postal_code.message}</b></p>}
+                                               ref={register({
+                                                   required: true,
+                                                   minLength: 3
+                                               })}/>
+                                        {errors.lastName
+                                        && errors.postCode.type === "required"
+                                        && <p className="error-message">This field is required</p>}
+                                        {errors.postCode
+                                        && errors.postCode.type === "minLength"}
                                     </div>
+
                                     <div className="acc-input-container acc-city">
                                         <p className="acc-input-label">City</p>
                                         <input className="acc-input" name="city"
-                                               ref={register()}/>
-                                        {errors.city && <p className="error-message">City name is too short!</p>}
+                                               ref={register({
+                                                   required: true,
+                                                   minLength: 3
+                                               })}/>
+                                        {errors.city
+                                        && errors.city.type === "required"
+                                        && <p className="error-message">This field is required</p>}
+                                        {errors.city
+                                        && errors.city.type === "minLength"}
                                     </div>
                                 </div>
 
@@ -127,32 +192,45 @@ function SignUp() {
                                             <p className="acc-input-label">Password:</p>
                                             <input className="acc-input" type="password"
                                                    name="password"
-                                       ref={register({
-                                           required: "password is required",
-                                                minLength: {
-                                                    value: 8,
-                                                    message: "password is too short - 8 characters required"
-                                                 },
-                                            })}/>
-                                            {errors.password && <p><b>{errors.password.message}</b></p>}
+                                                   ref={register({
+                                                       required: "password is required",
+                                                       minLength: {
+                                                           value: 8,
+                                                           message: "password is too short - 8 characters required"
+                                                       },
+                                                   })}/>
+                                            {errors.password
+                                            && errors.password.type === "required"
+                                            && <p className="error-message">This field is required</p>}
+                                            {errors.password
+                                            && errors.password.type === "minLength"
+                                            && <p className="error-message">Password must have minimum length 8</p>}
                                         </div>
+
                                         <div className="acc-input-container acc-password-confirmation">
                                             <p className="acc-input-label">Repeat password:</p>
-                                            <input className="acc-input" type="password" name="passwordConfirmation"
-                                                   ref={register()}/>
-                                            {errors.passwordConfirmation &&
-                                            <p className="error-message">Password inputs do not match</p>}
+                                            <input
+                                                className="acc-input"
+                                                name="passwordConfirmation"
+                                                type="password"
+                                                ref={register({
+                                                    validate: value =>
+                                                        value === password.current || "The passwords do not match"
+                                                })}
+                                            />
+                                            {errors.passwordConfirmation && <p className="error-message">{errors.passwordConfirmation.message}</p>}
+
                                         </div>
                                     </div>
                                 </div>
                                 <button className="acc-button acc-save-changes"
-                                 type="submit"
-                                 onClick={handleSubmit(onSubmit)}>
+                                        type="submit"
+                                        onClick={handleSubmit(onSubmit)}>
                                     Submit
-                                 </button>
-                                 <div className="warning-message hidden">
-                                          <p>All fields are required</p>
-                                 </div>
+                                </button>
+                                <div className="warning-message hidden">
+                                    <p>All fields are required</p>
+                                </div>
                             </form>
                         </div>
                         <h6 className="text-agreement">
