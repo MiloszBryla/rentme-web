@@ -12,7 +12,12 @@ function DropDownMenu(props) {
 
     function logOut() {
         Cookies.remove("Authorization");
-        history.push("/index");
+        if (history.location.pathname === "/" || history.location.pathname === "/index" ){
+            history.go(0);
+        }
+        else{
+            history.push("/index")
+        }
     }
 
     function hideDropDownMenu() {

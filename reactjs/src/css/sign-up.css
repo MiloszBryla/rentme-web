@@ -1,18 +1,23 @@
 .sign-up-container {
-    display: flex;
-    align-items: start;
-    justify-content: center;
-    margin-top: 100px;
-    position: static;
+/*    display: flex;*/
+/*    align-items: start;*/
+/*    justify-content: center;*/
+    margin: 100px auto 50px auto;
+/*    position: static;*/
     font-family: "Roboto";
+    background: white;
+    border-radius: 8px;
+    width: 1000px;
+    color: black;
+    padding: 20px 50px;
 }
 
 .form {
-    float: left;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+/*    float: left;*/
+/*    display: grid;*/
+/*    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(5, 1fr);
-    grid-column-gap: 150px;
+    grid-column-gap: 150px;*/
     height: auto;
     width: 100%;
     margin-top: 10px;
