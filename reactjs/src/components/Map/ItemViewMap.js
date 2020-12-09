@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {useState, useEffect} from "react";
 import GoogleMapReact from 'google-map-react';
 import ItemViewMarker from "./MapComponents/ItemViewMarker.js";
 
