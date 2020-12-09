@@ -126,7 +126,7 @@ function ItemViewContent(id) {
                     </div>
                 </div>
                     <p className="item-heading-2 item-location">Location</p>
-                    <p>{user.address}, {user.postCode} {user.city} {user.lat} {user.lng}</p>
+                    <p>{user.address}, {user.postCode} {user.city}</p>
                     <ItemViewMap lat={user.lat} lon={user.lng}/>
             </div>
         </div>
