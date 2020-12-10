@@ -74,11 +74,11 @@ function ItemDetails(id) {
                     </div>
             </div>
             <div className="description-renter">
-                <h1 className="summary-payment">Summary of your purchase!</h1>
+                <h1 className="summary-payment">Summary of your purchase</h1>
                 <p className="summary-description">Your item: {item.name}</p>
-                <p className="summary-description"> Reting from:  {user.firstName} {user.lastName}</p>
-                <p className="summary-description" >Renting dates: 15.08.2020 - 16.08.2020 </p>
-                <p className="summary-payment-price">To pay: {estimatedPrice} PLN</p>
+                <p className="summary-description"> Reting from:  Natalia Owalna</p>
+                <p className="summary-description" >Renting dates: 11.12.2020 - 13.12.2020 </p>
+                <p className="summary-payment-price">To pay: 90 PLN</p>
             </div>
         </div>
 

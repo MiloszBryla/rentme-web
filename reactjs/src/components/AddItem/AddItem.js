@@ -78,8 +78,9 @@ function AddItem() {
 
             <div className="inputs">
                 <h4>What's your item?</h4>
-                <input className="add-item-item-name" placeholder="OwnedItem name" name="name" ref={register({required: true, minLength: 3})}/>
-                {errors.name && <p className="error-message">OwnedItem name is too short!</p>}
+                <input className="add-item-item-name" placeholder="" name="name" ref={register({required: true, minLength: 3})}/>
+                {errors.name &&
+                <p className="error-message">OwnedItem name is too short!</p>}
             <br/>
 
 
@@ -95,18 +96,19 @@ function AddItem() {
                         <option value={element.id}>{element.description}</option>
                     ))} </select>
 
-                <p><br/>trzeba wybrać usera  nie mamy sesji:</p>
-                <select className="type-selector" id="quest-type" name="owner.id" ref={register}>
-                    <option value="" selected disabled hidden>Choose...</option>
-                    {owners.map(element => (
-                        <option value={element.id}>{element.firstName + element.lastName}</option>
-                    ))} </select>
+                {/*<p><br/>trzeba wybrać usera  nie mamy sesji:</p>*/}
+                {/*<select className="type-selector" id="quest-type" name="owner.id" ref={register}>*/}
+                {/*    <option value="" selected disabled hidden>Choose...</option>*/}
+                {/*    {owners.map(element => (*/}
+                {/*        <option value={element.id}>{element.firstName + element.lastName}</option>*/}
+                {/*    ))} </select>*/}
 
 
                 <h4>Description:</h4>
                 <textarea className="item-description" name="description" placeholder="Describe your item..."
                           ref={register({required: true, minLength: 10})}/>
-                {errors.description && <p className="error-message">Description is too short!</p>}
+                {errors.description &&
+                <p className="error-message">Description is too short!</p>}
 
                 <h2 className="add-item-h2">How much? </h2>
                 <h4>Price (PLN/per day):</h4>
