@@ -11,14 +11,9 @@ function ItemViewMap (props) {
         zoom: 15
       };
 
-      // google api key needed
-      // const center={
-      //     lat: Number(props.lat - 0.001),
-      //     lng: Number(props.lon + 0.002)
-      // }
     const center={
-        lat: Number(50.0484729),
-        lng: Number(19.9589230)
+        lat: props.lat,
+        lng: props.lng
     }
 
 
@@ -32,15 +27,9 @@ function ItemViewMap (props) {
           defaultZoom={defaultProps.zoom}
         >
 
-            {/*google api key needed*/}
-            {/*<Marker*/}
-            {/*    lat={props.lat}*/}
-            {/*    lng={props.lon}*/}
-            {/*/>*/}
-
             <ItemViewMarker
-                lat={50.0484729}
-                lng={19.9589230}
+                lat={props.lat}
+                lng={props.lng}
             />
 
         </GoogleMapReact>

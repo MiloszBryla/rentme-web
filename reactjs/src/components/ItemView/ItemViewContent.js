@@ -7,7 +7,6 @@ import {Link} from "react-router-dom";
 import ItemViewMap from "../Map/ItemViewMap"
 import Cookies from "js-cookie";
 import {useHistory} from "react-router-dom";
-import jwt_decode from "jwt-decode";
 
 function ItemViewContent(id) {
     const history = useHistory();
@@ -38,36 +37,13 @@ function ItemViewContent(id) {
     function handleClick() {
 
         if (Cookies.get("Authorization") === undefined) {
-
+            console.log("DOTARLO")
             history.push("/item/view/${itemId}");
         }else {
             history.push(itemLinkToPay)
         }
 
     }
-    function authorizeListItemAccess(){
-        let token = Cookies.get("Authorization");
-        if(token !== undefined) {
-            let tokenExpiration = jwt_decode(token).exp;
-            history.push(itemLinkToPay);
-
-        }
-        else{
-            lightUpLoginOptions();
-        }
-    }
-
-    function lightUpLoginOptions(){
-        document.getElementById("account-buttons").animate([
-            {boxShadow: 'none'},
-            {boxShadow: "0px 0px 20px 15px rgba(255,231,0, 1)"},
-            {boxShadow: 'none'},
-            {boxShadow: "0px 0px 20px 15px rgba(255,231,0, 1)"},
-            {boxShadow: 'none'},
-        ], {
-            duration: 1600,
-        })
-    };
 
 
     // google api key needed below
@@ -146,12 +122,12 @@ function ItemViewContent(id) {
                         <p className="item-normal-text">{item.description}</p>
                     </div>
                     <div>
-                       <button className="button book-now" type="submit" onClick={handleClick} id="list-item-button" onClick={authorizeListItemAccess} >Rent Me!</button>
+                       <button className="button book-now" type="submit" onClick={handleClick}>Rent Me!</button>
                     </div>
                 </div>
                     <p className="item-heading-2 item-location">Location</p>
-                    <p>{user.address}, {user.postCode} {user.city} </p>
-                    <ItemViewMap lat={user.lat} lon={user.lng}/>
+                    <p>{user.address}, {user.postCode} {user.city}</p>
+                    <ItemViewMap lat={user.lat} lng={user.lng}/>
             </div>
         </div>
     )
