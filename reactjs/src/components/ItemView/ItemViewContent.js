@@ -7,6 +7,7 @@ import {Link} from "react-router-dom";
 import ItemViewMap from "../Map/ItemViewMap"
 import Cookies from "js-cookie";
 import {useHistory} from "react-router-dom";
+import jwt_decode from "jwt-decode";
 
 function ItemViewContent(id) {
     const history = useHistory();
@@ -59,6 +60,32 @@ function ItemViewContent(id) {
 //            console.error(error);
 //        }
 //    );
+
+    function authorizeListItemAccess(){
+        let token = Cookies.get("Authorization");
+        if(token !== undefined) {
+            let tokenExpiration = jwt_decode(token).exp;
+            let dateNow = new Date();
+            if (tokenExpiration > dateNow.getTime() / 1000) {
+                history.push(itemLinkToPay);
+            }
+        }
+        else{
+            lightUpLoginOptions();
+        }
+    }
+
+    function lightUpLoginOptions(){
+        document.getElementById("account-buttons").animate([
+            {boxShadow: 'none'},
+            {boxShadow: "0px 0px 20px 15px rgba(255,231,0, 1)"},
+            {boxShadow: 'none'},
+            {boxShadow: "0px 0px 20px 15px rgba(255,231,0, 1)"},
+            {boxShadow: 'none'},
+        ], {
+            duration: 1600,
+        })
+    };
 
     function getDays() {
         let start = document.querySelector(".start-date").value.split('-');
@@ -122,7 +149,7 @@ function ItemViewContent(id) {
                         <p className="item-normal-text">{item.description}</p>
                     </div>
                     <div>
-                       <button className="button book-now" type="submit" onClick={handleClick}>Rent Me!</button>
+                       <button className="button book-now" type="submit" onClick={handleClick} onClick={authorizeListItemAccess}>Rent Me!</button>
                     </div>
                 </div>
                     <p className="item-heading-2 item-location">Location</p>
