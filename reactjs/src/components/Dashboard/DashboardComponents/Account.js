@@ -45,6 +45,7 @@ function Account() {
         const request = new Request('http://localhost:8080/users', options);
         const response = await fetch(request);
         const status = await response.status;
+
     }
 
     return (

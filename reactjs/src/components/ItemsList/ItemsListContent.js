@@ -33,7 +33,6 @@ function ItemsListContent(searchPhrase){
                 {
                     method: 'GET',
                     credentials: 'include',
-
                 });
             const items = await response.json();
             setItems(items);
